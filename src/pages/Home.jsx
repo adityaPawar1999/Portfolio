@@ -16,18 +16,18 @@ const Home = () => {
       {/* Row 2 with two columns */}
       <div className="w-full h-1/2 grid grid-cols-1 md:grid-cols-2">
         
-        <div className="bg-green-400 text-white text-9xl font-semibold">
-          <p>RESUME<br/>
-          <span className="text-xl ml-5 font-semibold"
+        <div className=" bg-green-400 text-white text-9xl font-semibold">
+          <p className='relative'>RESUME</p>
+          <span className="absolute text-xl ml-2 font-semibold"
                style={{letterSpacing: '1.3em'}}
-               >ERP Implementation</span></p>
+               >ERP Implementation</span>
         </div>
 
         {/* Right Column */}
         <div className="bg-yellow-400 flex justify-center items-center text-gray-800 text-3xl font-semibold">
           <img
             className='object-contain h-full w-full' 
-            src='https://i.pinimg.com/1200x/25/3b/48/253b4838bcbb1482eee92b1dca91df1d.jpg' />
+            src='https://i.pinimg.com/736x/54/7b/32/547b322d00df2a1b7de68d615f3c8410.jpg' />
         </div>
       </div>
     </div>
