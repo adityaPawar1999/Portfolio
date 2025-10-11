@@ -16,11 +16,14 @@ const Home = () => {
       {/* Row 2 with two columns */}
       <div className="w-full h-1/2 grid grid-cols-1 md:grid-cols-2">
         
-        <div className=" bg-green-400 text-white text-9xl font-semibold">
-          <p className='relative'>RESUME</p>
+        <div className=" relative bg-green-400 text-white  font-semibold">
+          <p className=' text-9xl'>RESUME</p>
           <span className="absolute text-xl ml-2 font-semibold"
                style={{letterSpacing: '1.3em'}}
-               >ERP Implementation</span>
+               >ERP Implementation<br/></span><br/><br/><br/><br/>   
+          <span className='absolute left-0 text-sm ml-3  '
+          >ERP professional with hands-on experience in functional and technical roles, specializing in implementation, customization, and scripting.
+          </span>
         </div>
 
         {/* Right Column */}
