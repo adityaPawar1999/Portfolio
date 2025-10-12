@@ -50,7 +50,7 @@ const Navbar = () => {
           {/* Logo */}
           <div className="text-xl font-bold text-gray-800">
             <a href="#home" className="flex items-center">
-              <span className="text-blue-600">Portfolio</span>
+              <span className="text-white">Portfolio</span>
             </a>
           </div>
 

@@ -2,65 +2,43 @@ import React from 'react';
 
 const About = () => {
   return (
-    <div className="max-w-6xl mx-auto px-4 pt-24 pb-8">
-      <header className="bg-gray-800 text-white py-12 px-6 text-center mb-8 rounded-lg shadow-lg">
-        <h1 className="text-4xl font-bold mb-4">About Me</h1>
-        <p className="text-xl">Learn more about my background and skills</p>
-      </header>
-      
-      <main>
-        <section className="bg-white p-6 mb-6 rounded-lg shadow">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4 pb-2 border-b border-gray-200">My Background</h2>
-          <p className="text-gray-700 mb-4">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, 
-            nisl nisl aliquam nisl, eget aliquam nisl nisl sit amet nisl. Sed euismod, nisl vel ultricies lacinia, 
-            nisl nisl aliquam nisl, eget aliquam nisl nisl sit amet nisl.
+    <div className="w-full h-screen grid grid-cols-1 md:grid-cols-2 overflow-hidden">
+
+      {/* Left Column */}
+      <div className="bg-indigo-500 flex justify-center items-center text-white font-bold">
+        <img src='https://i.pinimg.com/1200x/bd/f0/ef/bdf0ef6f416e52d00d21ca488f9530e9.jpg' />
+      </div>
+
+      {/* Right Column (4 rows with different heights) */}
+      <div className="flex flex-col h-full">
+
+        {/* Row 1 - Small */}
+        <div className="h-1/6 bg-yellow-300 flex items-center px-6 text-gray-900 font-semibold text-2xl">
+          <p>ERP Implementation Specialist</p>
+        </div>
+
+        {/* Row 2 - Medium */}
+        <div className="h-2/6 bg-green-400 flex items-center px-6 text-white font-medium text-lg leading-relaxed">
+          <p>
+            Passionate about streamlining business operations through ERPNext and Frappe Framework. 
+            Skilled in workflow design, functional configuration, and automation scripting.
           </p>
-          <p className="text-gray-700 mb-4">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, 
-            nisl nisl aliquam nisl, eget aliquam nisl nisl sit amet nisl.
+        </div>
+
+        {/* Row 3 - Larger */}
+        <div className="h-1/3 bg-blue-500 flex items-center px-6 text-white text-lg">
+          <p>
+            Experienced in implementing ERP for trading and import-export companies, 
+            handling modules like Sales, Purchase, Accounts, and Inventory.
           </p>
-        </section>
-        
-        <section className="bg-white p-6 mb-6 rounded-lg shadow">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4 pb-2 border-b border-gray-200">Education</h2>
-          <div className="mb-4">
-            <h3 className="text-xl font-medium text-gray-800">University Name</h3>
-            <p className="text-gray-600">Degree in Computer Science, 2018-2022</p>
-            <p className="text-gray-700 mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia.</p>
-          </div>
-        </section>
-        
-        <section className="bg-white p-6 mb-6 rounded-lg shadow">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4 pb-2 border-b border-gray-200">Skills</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <h3 className="text-lg font-medium text-gray-800 mb-2">Technical Skills</h3>
-              <ul className="list-disc list-inside text-gray-700">
-                <li>JavaScript/TypeScript</li>
-                <li>React.js</li>
-                <li>Node.js</li>
-                <li>HTML/CSS</li>
-                <li>Git</li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-lg font-medium text-gray-800 mb-2">Soft Skills</h3>
-              <ul className="list-disc list-inside text-gray-700">
-                <li>Problem Solving</li>
-                <li>Communication</li>
-                <li>Teamwork</li>
-                <li>Time Management</li>
-                <li>Adaptability</li>
-              </ul>
-            </div>
-          </div>
-        </section>
-      </main>
-      
-      <footer className="text-center py-6 mt-8 text-gray-500 text-sm">
-        <p>&copy; {new Date().getFullYear()} My Portfolio</p>
-      </footer>
+        </div>
+
+        {/* Row 4 - Small Footer-like */}
+        <div className="flex-1 bg-gray-800 flex items-center px-6 text-gray-100 text-sm tracking-wide">
+          <p>Driven by curiosity, discipline, and a desire to build self-sustained intelligent systems.</p>
+        </div>
+      </div>
+
     </div>
   );
 };
