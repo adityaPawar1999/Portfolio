@@ -1,4 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,8 +35,8 @@ const Navbar = () => {
 
   // Social links (using text as placeholders since MUI icons aren't available)
   const socialLinks = [
-    { name: 'GitHub', href: '' },
-    { name: 'LinkedIn', href: '' },
+    { name: 'GitHub', icon: <GitHubIcon />, href: '' },
+    { name: 'LinkedIn', icon: <LinkedInIcon />, href: '' },
   ];
 
   return (
@@ -80,7 +84,7 @@ const Navbar = () => {
                   }`}
                   aria-label={link.name}
                 >
-                  {link.name}
+                  {link.icon}
                 </a>
               ))}
             </div>
@@ -90,12 +94,12 @@ const Navbar = () => {
           <div className="md:hidden flex items-center">
             <button
               onClick={toggleMenu}
-              className={`focus:outline-none font-bold ${
+              className={`focus:outline-none ${
                 scrolled ? 'text-gray-800' : 'text-white'
               }`}
               aria-label="Toggle menu"
             >
-              {isOpen ? '✕' : '☰'}
+              {isOpen ? <CloseIcon /> : <MenuIcon />}
             </button>
           </div>
         </div>
@@ -125,10 +129,10 @@ const Navbar = () => {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-800 hover:text-blue-600 transition-colors font-semibold"
+                  className="text-gray-800 hover:text-blue-600 transition-colors"
                   aria-label={link.name}
                 >
-                  {link.name}
+                  {link.icon}
                 </a>
               ))}
             </div>
@@ -140,6 +144,7 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
 
 
 // import React, { useState, useEffect } from 'react';
