@@ -49,7 +49,7 @@ export default function Home() {
                   H!!!...
                 </span>
                 <br />
-                <span>ADITYA</span>
+                <span>I’m ADITYA</span>
               </h1>
               <p className="text-sm text-gray-500 mt-2">ERP Implementation | Technical | Functional</p>
               {/* Button */}
