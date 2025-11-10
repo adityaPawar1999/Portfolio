@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 
 export default function Home() {
@@ -8,7 +7,7 @@ export default function Home() {
     // Show modules after 2 seconds
     const timer = setTimeout(() => {
       setShowModules(true);
-    }, 2000);
+    }, 1000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -37,7 +36,7 @@ export default function Home() {
       
       {/* Content */}
       <div className="relative z-10 min-h-screen px-4 sm:px-6 py-8 sm:py-0">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 min-h-screen items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-12 min-h-screen items-center">
           
           {/* Left Column: Main Heading */}
           <div className="flex items-center justify-center lg:justify-start">
@@ -112,6 +111,7 @@ export default function Home() {
     </header>
   );
 }
+
 
 // export default function Home() {
 //   const modules = [
