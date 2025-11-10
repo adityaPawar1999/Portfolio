@@ -41,7 +41,7 @@ export default function Home() {
           {/* Left Column: Main Heading */}
           <div className="flex items-center justify-center lg:justify-start mb-8 lg:mb-0">
             <div className="text-center lg:text-left">
-              <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[8rem] font-extrabold tracking-widest text-white leading-none">
+              <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[5rem] font-extrabold tracking-widest text-white leading-none">
                 <span 
                   className="text-transparent" 
                   style={{ WebkitTextStroke: '2px white' }}
