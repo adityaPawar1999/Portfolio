@@ -51,7 +51,7 @@ export default function Home() {
                 <br />
                 <span>I’m ADITYA</span>
               </h1>
-              <p className="text-sm text-gray-500 mt-2">ERP Implementation | Technical | Functional</p>
+              <p className="text-md text-gray-300 mt-2">ERP Implementation | Technical | Functional</p>
               {/* Button */}
               <div className="mt-6 sm:mt-8 flex justify-center lg:justify-start">
                 <a 
