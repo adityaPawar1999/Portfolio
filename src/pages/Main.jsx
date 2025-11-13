@@ -4,7 +4,6 @@ import About from './About';
 const Main = () => {(
     <>
     <Home />
-    <About />
     </>
 )}
 export default Main
