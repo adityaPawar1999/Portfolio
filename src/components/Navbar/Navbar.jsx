@@ -39,12 +39,12 @@ const Navbar = () => {
     { 
       name: 'GitHub', 
       icon: <GitHubIcon />, 
-      href: 'https://github.com/yourusername' // Replace with your GitHub URL
+      href: 'https://github.com/adityaPawar1999' // Replace with your GitHub URL
     },
     { 
       name: 'LinkedIn', 
       icon: <LinkedInIcon />, 
-      href: 'https://linkedin.com/in/yourusername' // Replace with your LinkedIn URL
+      href: 'https://www.linkedin.com/in/aditya-pawar-857247216' // Replace with your LinkedIn URL
     },
   ];
 
