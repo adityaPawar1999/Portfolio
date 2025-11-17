@@ -12,7 +12,6 @@ const Layout = () => {
     <>
       {showNavbar && <Navbar />}
       <Outlet />
-    <About />
 
     </>
   );
