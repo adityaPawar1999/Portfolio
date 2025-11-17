@@ -77,6 +77,8 @@ export default function Home() {
                     >
                       <a
                         href={module.path}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="inline-block hover:text-white hover:font-extrabold hover:text-2xl sm:hover:text-3xl lg:hover:text-[3rem] transition-all transform duration-400 no-underline"
                       >
                         {module.name}
