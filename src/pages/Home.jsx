@@ -13,7 +13,7 @@ export default function Home() {
   }, []);
 
   const modules = [
-    { name: 'Accounts', path: '/app/accounting' },
+    { name: 'Accounts', path: 'https://docs.google.com/spreadsheets/d/12l4IM7esH_jfsVLh4lu2cG1hqfQrCvHZSGIuBG7GYz4/edit?gid=0#gid=0' },
     { name: 'CRM', path: '/app/crm' },
     { name: 'Sales', path: '/app/selling' },
     { name: 'Buying', path: '/app/buying' },
