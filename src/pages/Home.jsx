@@ -13,12 +13,12 @@ export default function Home() {
   }, []);
 
   const modules = [
-    { name: 'Accounts', path: 'https://docs.google.com/spreadsheets/d/12l4IM7esH_jfsVLh4lu2cG1hqfQrCvHZSGIuBG7GYz4/edit?gid=0#gid=0' },
-    { name: 'CRM', path: '/app/crm' },
-    { name: 'Sales', path: '/app/selling' },
-    { name: 'Buying', path: '/app/buying' },
-    { name: 'Stock', path: '/app/stock' },
-    { name: 'Manufacturing', path: '/app/manufacturing' }
+    { name: 'Accounts', path: 'https://docs.google.com/spreadsheets/d/12l4IM7esH_jfsVLh4lu2cG1hqfQrCvHZSGIuBG7GYz4/edit?usp=sharing' },
+    { name: 'CRM', path: 'https://docs.google.com/spreadsheets/d/1tEhD1yNmz9tDzVsL5CXmcmSrW_eDrC4FGm6inR_1Hcw/edit?usp=sharing' },
+    { name: 'Sales', path: 'https://docs.google.com/spreadsheets/d/1CWP4NrXLzF2kJcwfUpXEsVtI0ilHY5DXnPcaP_Nln30/edit?usp=sharing' },
+    { name: 'Buying', path: 'https://docs.google.com/spreadsheets/d/1KO75HiMJJBJ6HC26LzR98MkDWm8fUv5TEjgV-vDNCKw/edit?usp=sharing' },
+    { name: 'Stock', path: 'https://docs.google.com/spreadsheets/d/1MPNKq_wxB-rCqebIHs-AkwO91Kt942azhzb2HpO5x18/edit?usp=sharing' },
+    { name: 'Manufacturing', path: 'https://docs.google.com/spreadsheets/d/1oxUmT2L-gMg2UPe8-6Rhj6n9S0cjnVP5TvsFDuQimSU/edit?usp=sharing' }
   ];
 
   return (
