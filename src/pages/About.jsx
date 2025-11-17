@@ -2,7 +2,7 @@ import React from 'react';
 
 const About = () => {
   return (
-    <div className="w-full h-screen grid grid-cols-1 md:grid-cols-2 overflow-hidden">
+    <div className="w-full h-screen grid grid-cols-1 md:grid-cols-2 ">
 
       {/* Left Column */}
       <div className="bg-indigo-500 flex justify-center items-center text-white font-bold">
