@@ -2,14 +2,8 @@ import React from "react";
 
 export default function About() {
   return (
-    <div
-      className="bg-cover bg-center bg-no-repeat min-h-screen pt-8"
-      style={{
-        backgroundImage:
-          "url('https://images.unsplash.com/photo-1503264116251-35a269479413?auto=format&fit=crop&w=1200&q=80')",
-      }}
-    >
-      <div className="w-full md:h-screen grid grid-cols-1 md:grid-cols-2 bg-white/60 backdrop-blur-sm">
+    
+      <div className="w-full md:h-screen grid grid-cols-1 md:grid-cols-2 bg-white/60 backdrop-blur-sm mt-7" >
 
         {/* Left Column */}
         <div className="p-6 md:p-12">
