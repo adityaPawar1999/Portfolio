@@ -1,73 +1,105 @@
 import React from "react";
 import PlaceIcon from '@mui/icons-material/Place';
 import BusinessIcon from '@mui/icons-material/Business';
+import LocalPostOfficeIcon from '@mui/icons-material/LocalPostOffice';
+import AssessmentIcon from '@mui/icons-material/Assessment';
+
 
 export default function About() {
-  return (
-    <div className="w-full min-h-screen bg-white pt-28 px-4 md:px-12">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+ return (
+   <div className="w-full min-h-screen bg-white pt-20 px-2 md:px-12">
+     <div className="grid grid-cols-1 md:grid-cols-2">
 
-        {/* Left Column */}
-        <div className="p-4">
-          <img
-            src="https://i.pinimg.com/1200x/f5/ff/ad/f5ffadb0e5eeac1b92de51dcb2cc13d1.jpg"
-            alt="Profile"
-            className="shadow-xl object-cover rounded-xl w-full max-w-sm h-auto mx-auto"
-          />
 
-          <div className="mt-4 space-y-2 text-gray-700">
-            <p className="flex items-center gap-2">
-              <BusinessIcon className="text-gray-600" /> Bangalore (Current City)
-            </p>
+       {/* Left Column */}
+       <div className="">
+         <img
+           src="https://i.pinimg.com/1200x/f5/ff/ad/f5ffadb0e5eeac1b92de51dcb2cc13d1.jpg"
+           alt="Profile"
+           className="shadow-xl object-cover rounded-sm w-full max-w-lg h-auto mx-auto"
+         />
+        
 
-            <p className="flex items-center gap-2">
-              <PlaceIcon className="text-gray-600" /> Pune (Hometown)
-            </p>
-          </div>
-        </div>
 
-        {/* Right Column */}
-        <div className="p-4">
-          <h1 className="text-xl md:text-3xl font-extrabold text-gray-800">
-            Digital Transformation & ERP Consultant
-          </h1>
+       </div>
 
-          <p className="mt-4 text-sm md:text-[15px] text-gray-700 leading-relaxed">
-            HII Myself <span className="font-extrabold">Aditya Vilas Pawar</span>,
-            currently working in Bangalore and basically from Pune. I specialise
-            in ERP implementation, system optimisation, and end-to-end business
-            process automation across multiple functional domains.
-            <br /><br />
-            With hands-on experience in Accounting, Sales, CRM, and Inventory workflows,
-            I focus on building solutions that reduce manual work and improve operational
-            efficiency. My approach blends technical skills with functional understanding,
-            ensuring every deployment is both stable and user-friendly.
-            <br /><br />
-            Dedicated to continuous learning, I work with a mindset of clarity, precision,
-            and long-term scalability. Every project I take is handled with professionalism,
-            responsibility, and a commitment to excellence.
-          </p>
 
-          {/* Tags */}
-          <div className="mt-4 flex gap-2 flex-wrap">
-            <span className="bg-gray-100 px-2 py-1 text-[12px] rounded hover:bg-gray-700 hover:text-white">
-              #ERPNext
-            </span>
-            <span className="bg-gray-100 px-2 py-1 text-[12px] rounded hover:bg-gray-700 hover:text-white">
-              #Python
-            </span>
-            <span className="bg-gray-100 px-2 py-1 text-[12px] rounded hover:bg-gray-700 hover:text-white">
-              #Javascript
-            </span>
-          </div>
+       {/* Right Column */}
+       <div className="">
+         <h1 className="text-xl md:text-2xl font-extrabold text-gray-800">
+           Digital Transformation & ERP Consultant
+         </h1>
 
-          {/* Big Heading */}
-          <p className="text-5xl md:text-7xl font-extrabold text-gray-900 pt-6">
-            ABOUT <br /> ME
-          </p>
-        </div>
 
-      </div>
-    </div>
-  );
+         <p className="mt-4 text-sm md:text-[12px] text-gray-700 leading-relaxed">
+           HII Myself <span className="font-extrabold">Aditya Vilas Pawar</span>, an ERP techno-functional consultant experienced in designing and implementing practical and scalable ERP solutions. I work across accounting, inventory, manufacturing, procurement, sales, and supply chain, connecting
+            real business needs with effective technical execution. My focus is on process optimisation, automation, and building secure ERP systems that improve efficiency and support long-term business growth. With a calm problem-solving approach, I aim to deliver smooth, structured, and value-driven implementations.<br />
+             <span className="font-extrabold">📌 Areas of focus:</span><br />
+             ERP Implementation, Functional & Technical Consulting<br />
+             Accounting, Finance & Compliance Modules<br />
+             Inventory, Stock & Warehouse Management<br />
+             Manufacturing & Production Planning<br />
+             Technical Customization, Automation & Client Scripting<br />
+         </p>
+
+
+        
+
+
+        <h1 className="pt-6 text-5xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[6rem] font-extrabold tracking-tight text-black leading-[0.95]">
+         <span className="block">ABOUT</span>
+         <span
+           className="text-transparent block"
+           style={{ WebkitTextStroke: '1px black', fontWeight: '900' }}
+         >
+           ME
+         </span>
+       </h1>
+
+
+       </div>
+
+
+     </div>
+
+
+     {/* 3 Column Section */}
+<div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+
+
+ {/* Address Column */}
+ <div className="">
+   <h3 className="font-bold text-gray-800 text-sm mb-2"><PlaceIcon /> Address</h3>
+   <p className="text-gray-600 text-[12px]">
+      Bangalore (Current City)
+   </p>
+   <p className="text-gray-600 text-[12px]">
+      Pune (Hometown)
+   </p>
+ </div>
+
+
+ {/* Contact Column */}
+ <div className="">
+   <h3 className="font-bold text-gray-800 text-sm mb-2"><LocalPostOfficeIcon /> Contact</h3>
+   <p className="text-gray-600 text-[12px] cursor-pointer" onClick={() => window.location.href = "adityapawar8909@gmail.com"}>adityapawar8909@gmail.com</p>
+ </div>
+
+
+ {/* Availability Column */}
+ <div className="">
+   <h3 className="font-bold text-gray-800 text-sm mb-2"><AssessmentIcon /> Availability</h3>
+   <p className="text-gray-600 text-[12px]">
+     Open for Freelance Work & ERP Consulting Projects
+   </p>
+ </div>
+
+
+</div>
+
+
+   </div>
+ );
 }
+
+
