@@ -17,7 +17,7 @@ export default function About() {
          <img
            src={MyImage}
            alt="Profile"
-           className="shadow-xl object-cover rounded-sm w-full max-w-lg h-auto mx-auto"
+           className="shadow-xl object-cover h-[300px] rounded-sm w-full max-w-lg h-auto mx-auto"
          />
         
 
