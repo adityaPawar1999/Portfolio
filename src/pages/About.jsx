@@ -3,7 +3,7 @@ import React from "react";
 export default function About() {
   return (
     <div
-      className="bg-cover bg-center bg-no-repeat min-h-screen"
+      className="bg-cover bg-center bg-no-repeat min-h-screen pt-8"
       style={{
         backgroundImage:
           "url('https://images.unsplash.com/photo-1503264116251-35a269479413?auto=format&fit=crop&w=1200&q=80')",
