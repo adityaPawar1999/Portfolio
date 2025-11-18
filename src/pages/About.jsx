@@ -3,6 +3,7 @@ import PlaceIcon from '@mui/icons-material/Place';
 import BusinessIcon from '@mui/icons-material/Business';
 import LocalPostOfficeIcon from '@mui/icons-material/LocalPostOffice';
 import AssessmentIcon from '@mui/icons-material/Assessment';
+import MyImage from './me_orqnge.jpg'
 
 
 export default function About() {
@@ -14,7 +15,7 @@ export default function About() {
        {/* Left Column */}
        <div className="">
          <img
-           src="me_orqnge.jpg"
+           src={MyImage}
            alt="Profile"
            className="shadow-xl object-cover rounded-sm w-full max-w-lg h-auto mx-auto"
          />
