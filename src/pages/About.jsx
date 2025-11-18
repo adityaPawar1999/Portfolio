@@ -3,7 +3,7 @@ import React from "react";
 export default function About() {
   return (
     
-      <div className="w-full md:h-screen grid grid-cols-1 md:grid-cols-2 bg-white/60 backdrop-blur-sm mt-7" >
+      <div className="w-full md:h-screen grid grid-cols-1 md:grid-cols-2 bg-white/60 backdrop-blur-sm pt-9" >
 
         {/* Left Column */}
         <div className="p-6 md:p-12">
