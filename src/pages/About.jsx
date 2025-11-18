@@ -4,15 +4,6 @@ import BusinessIcon from '@mui/icons-material/Business';
 
 export default function About() {
   return (
-    <div
-      className="bg-cover bg-center bg-no-repeat min-h-screen"
-      style={{
-        backgroundImage:
-          "url('https://images.unsplash.com/photo-1503264116251-35a269479413?auto=format&fit=crop&w=1200&q=80')",
-      }}
-    >
-      <div className="w-full md:h-screen grid grid-cols-1 md:grid-cols-2 bg-white/60 backdrop-blur-sm">
-
         {/* Left Column */}
         <div className="p-6 md:p-12">
           <img
