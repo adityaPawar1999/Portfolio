@@ -3,7 +3,7 @@ import PlaceIcon from '@mui/icons-material/Place';
 import BusinessIcon from '@mui/icons-material/Business';
 import LocalPostOfficeIcon from '@mui/icons-material/LocalPostOffice';
 import AssessmentIcon from '@mui/icons-material/Assessment';
-import MyImage from './Screenshot_20251118_195452_Instagram'
+import MyImage from './Screenshot_20251118_195452_Instagram';
 
 
 export default function About() {
