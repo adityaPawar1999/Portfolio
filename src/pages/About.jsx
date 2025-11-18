@@ -1,4 +1,6 @@
 import React from "react";
+import PlaceIcon from '@mui/icons-material/Place';
+import BusinessIcon from '@mui/icons-material/Business';
 
 export default function About() {
   return (
@@ -18,8 +20,10 @@ export default function About() {
             alt="Profile"
             className="shadow-xl object-cover"
           />
-          <p>Current City : Banglore</p>
-        </div>
+          <p><BusinessIcon /> Banglore</p>
+          <p><PlaceIcon /> Pune</p>
+          <span></span>
+          </div>
 
         {/* Right Column */}
         <div className="p-6">
