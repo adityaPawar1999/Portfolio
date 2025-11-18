@@ -15,7 +15,7 @@ export default function About() {
        {/* Left Column */}
        <div className="">
          <img
-           src={SelfPic}
+           src='./src/pages/Screenshot_20251118_195452_Instagram.jpg'
            alt="Profile"
            className="shadow-xl object-cover  rounded-sm w-full max-w-lg h-auto  mx-auto"
          />
