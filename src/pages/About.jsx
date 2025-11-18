@@ -14,7 +14,7 @@ export default function About() {
        {/* Left Column */}
        <div className="">
          <img
-           src="https://i.pinimg.com/1200x/f5/ff/ad/f5ffadb0e5eeac1b92de51dcb2cc13d1.jpg"
+           src="me_orange.jpg"
            alt="Profile"
            className="shadow-xl object-cover rounded-sm w-full max-w-lg h-auto mx-auto"
          />
