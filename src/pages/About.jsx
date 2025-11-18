@@ -3,7 +3,7 @@ import PlaceIcon from '@mui/icons-material/Place';
 import BusinessIcon from '@mui/icons-material/Business';
 import LocalPostOfficeIcon from '@mui/icons-material/LocalPostOffice';
 import AssessmentIcon from '@mui/icons-material/Assessment';
-import MyImage from './Screenshot_20251118_195452_Instagram';
+import SelfPic from './Screenshot_20251118_195452_Instagram';
 
 
 export default function About() {
@@ -15,7 +15,7 @@ export default function About() {
        {/* Left Column */}
        <div className="">
          <img
-           src={MyImage}
+           src={SelfPic}
            alt="Profile"
            className="shadow-xl object-cover  rounded-sm w-full max-w-lg h-auto  mx-auto"
          />
