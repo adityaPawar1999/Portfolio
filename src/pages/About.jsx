@@ -2,7 +2,7 @@ import React from "react";
 import PlaceIcon from '@mui/icons-material/Place';
 import LocalPostOfficeIcon from '@mui/icons-material/LocalPostOffice';
 import AssessmentIcon from '@mui/icons-material/Assessment';
-import SelfPic from 'src/pages/Screenshot_20251118_195452_Instagram.jpg';
+import SelfPic from './Screenshot_20251118_195452_Instagram.jpg'; // Same folder
 
 export default function About() {
   return (
@@ -11,7 +11,7 @@ export default function About() {
         {/* Left Column */}
         <div className="">
           <img
-            src={SelfPic}  // Use the imported image
+            src={SelfPic}
             alt="Profile"
             className="shadow-xl object-cover rounded-sm w-full max-w-lg h-auto mx-auto"
           />
