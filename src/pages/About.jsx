@@ -20,8 +20,8 @@ export default function About() {
         
         {/* Right Column */}
         <div className="">
-          <h1 className="text-xl md:text-2xl font-extrabold text-gray-800">
-            Digital Transformation & ERP Consultant
+          <h1 className="text-xl md:text-2xl font-extrabold text-gray-800 pt-2">
+            Consultant in ERP Implementation & Techno-Functional Excellence
           </h1>
           <p className="mt-4 text-sm md:text-[12px] text-gray-700 leading-relaxed">
             Hi! Myself <span className="font-extrabold">Aditya Vilas Pawar</span>, an ERP techno-functional consultant experienced in designing and implementing practical and scalable ERP solutions. I work across accounting, inventory, manufacturing, procurement, sales, and supply chain, connecting
