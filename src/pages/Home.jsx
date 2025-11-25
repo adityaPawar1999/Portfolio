@@ -13,7 +13,7 @@ export default function Home() {
   }, []);
 
   const modules = [
-    { name: 'Accounts', path: 'https://docs.google.com/spreadsheets/d/12l4IM7esH_jfsVLh4lu2cG1hqfQrCvHZSGIuBG7GYz4/edit?usp=sharing' },
+    { name: 'Accounts', path: '/Account' },
     { name: 'CRM', path: 'https://docs.google.com/spreadsheets/d/1tEhD1yNmz9tDzVsL5CXmcmSrW_eDrC4FGm6inR_1Hcw/edit?usp=sharing' },
     { name: 'Sales', path: 'https://docs.google.com/spreadsheets/d/1CWP4NrXLzF2kJcwfUpXEsVtI0ilHY5DXnPcaP_Nln30/edit?usp=sharing' },
     { name: 'Buying', path: 'https://docs.google.com/spreadsheets/d/1ZfcF97MilYZuLIUZr5rVkGfbk2X4Gt7vDcv3bl0na5E/edit?usp=sharing' },
