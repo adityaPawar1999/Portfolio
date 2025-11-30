@@ -17,7 +17,10 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/Account" element={<Account />} />
-          
+          <Route path="/crm" element={<NotFound />} />
+          <Route path="/sales" element={<NotFound />} />
+          <Route path="/stock" element={<NotFound />} />
+
            <Route path="*" element={<NotFound />} />
           
         </Route>
