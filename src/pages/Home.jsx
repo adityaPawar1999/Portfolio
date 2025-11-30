@@ -13,12 +13,7 @@ export default function Home() {
   }, []);
 
   const modules = [
-    { name: 'Accounts', path: '/Account' },
-    { name: 'CRM', path: 'https://docs.google.com/spreadsheets/d/1tEhD1yNmz9tDzVsL5CXmcmSrW_eDrC4FGm6inR_1Hcw/edit?usp=sharing' },
-    { name: 'Sales', path: 'https://docs.google.com/spreadsheets/d/1CWP4NrXLzF2kJcwfUpXEsVtI0ilHY5DXnPcaP_Nln30/edit?usp=sharing' },
-    { name: 'Buying', path: 'https://docs.google.com/spreadsheets/d/1ZfcF97MilYZuLIUZr5rVkGfbk2X4Gt7vDcv3bl0na5E/edit?usp=sharing' },
-    { name: 'Stock', path: 'https://docs.google.com/spreadsheets/d/1KO75HiMJJBJ6HC26LzR98MkDWm8fUv5TEjgV-vDNCKw/edit?usp=sharing' },
-    { name: 'Manufacturing', path: 'https://docs.google.com/spreadsheets/d/1oxUmT2L-gMg2UPe8-6Rhj6n9S0cjnVP5TvsFDuQimSU/edit?usp=sharing' }
+    { name: 'Accounts', path: '/Account' }
   ];
 
   return (
@@ -49,7 +44,7 @@ export default function Home() {
                   H!!!...
                 </span>
                 <br />
-                <span>I’m ADITYA</span>
+                <span>I'm ADITYA</span>
               </h1>
               <p className="text-md text-gray-300 mt-2">ERP Implementation | Technical | Functional</p>
               {/* Button */}
@@ -69,19 +64,15 @@ export default function Home() {
             {showModules && (
               <div className="text-center lg:text-right text-white space-y-3 lg:space-y-4 lg:pr-12">
                 <ul className="space-y-2 sm:space-y-3 lg:space-y-4 text-base sm:text-lg md:text-xl lg:text-sm">
-                  {modules.map((module, index) => (
-                    <li 
-                      key={index}
-                      className="animate-fadeIn"
-                      style={{ animationDelay: `${index * 100}ms` }}
-                    >
+                  {modules.map((link) => (
+                    <li key={link.name}>
                       <a
-                        href={module.path}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-block hover:text-white hover:font-extrabold hover:text-2xl sm:hover:text-3xl lg:hover:text-[3rem] transition-all transform duration-400 no-underline"
+                        href={link.path}
+                        className="hover:text-gray-300 transition-colors"
+                        target={link.path.startsWith('http') ? '_blank' : '_self'}
+                        rel={link.path.startsWith('http') ? 'noopener noreferrer' : undefined}
                       >
-                        {module.name}
+                        {link.name}
                       </a>
                     </li>
                   ))}
@@ -91,26 +82,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-
-      {/* Custom CSS for fade-in animation */}
-      <style jsx>{`
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        
-        .animate-fadeIn {
-          animation: fadeIn 0.6s ease-out forwards;
-          opacity: 0;
-        }
-      `}</style>
     </header>
   );
 }
-
