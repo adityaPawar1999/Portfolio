@@ -6,16 +6,12 @@ export default function NotFound() {
     <div className="h-screen flex items-center justify-center bg-gray-50 px-4">
       <div className="text-center max-w-lg">
         
-        <h1 className="text-9xl font-extrabold text-gray-900 tracking-wider">
-          404
-        </h1>
-
         <h2 className="mt-[-8px] text-3xl font-semibold text-gray-700">
-          Page Not Found
+          Page Not Available At This Moments
         </h2>
 
         <p className="mt-4 text-gray-500 text-lg leading-relaxed">
-          The page you are looking for may have been removed, had its name changed, 
+          The page you are looking for may have been removed, Under wwork, 
           or is temporarily unavailable.
         </p>
 
