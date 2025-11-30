@@ -124,16 +124,11 @@ const Navbar = () => {
          <div className="md:hidden flex items-center">
            <button
              onClick={toggleMenu}
-             className={`${isAboutPage ? 'text-white' : scrolled ? 'text-gray-800' : 'text-white'}`}
+             className={`${isAboutPage || isAccountPage ? 'text-white' : scrolled ? 'text-gray-800' : 'text-white'}`}
            >
              {isOpen ? <CloseIcon /> : <MenuIcon />}
            </button>
-           <button
-             onClick={toggleMenu}
-             className={`${isAccountPage ? 'text-white' : scrolled ? 'text-gray-800' : 'text-white'}`}
-           >
-             {isOpen ? <CloseIcon /> : <MenuIcon />}
-           </button>
+           
          </div>
        </div>
 
