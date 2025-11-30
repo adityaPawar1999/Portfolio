@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from "react";
 import data from './accounting_data'
 import Navbar from '../../components/Navbar';
+import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 
 
 export default function AccountingGlossary() {
@@ -23,13 +24,13 @@ export default function AccountingGlossary() {
       {/* Fixed Header */}
       <div className="fixed top-0 left-0 right-0 bg-white shadow-sm z-20 border-b border-slate-200">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 sm:py-6">
-          <h1 className="text-2xl sm:text-3xl font-bold text-slate-800 mb-3 sm:mb-4">
+          {/* <h1 className="text-2xl mt-8 sm:text-3xl font-bold text-slate-800 mb-3 sm:mb-4">
             Accounting Glossary
-          </h1>
+          </h1> */}
 
           {/* Search Bar */}
           <div className="relative">
-            <div className="relative">
+            <div className="relative mt-9">
               <input
                 type="text"
                 value={search}
@@ -81,8 +82,12 @@ export default function AccountingGlossary() {
 
       {/* Content with padding for fixed header */}
       <div className="pt-36 sm:pt-40 pb-8 px-4 sm:px-6">
+        
         <div className="max-w-6xl mx-auto">
           {/* Grid Layout */}
+          <h1 className="text-2xl mt-4 sm:text-3xl font-bold text-black mb-3 sm:mb-4">
+           <AccountBalanceIcon fontSize="large" /> ACCOUNTING CONCEPT
+          </h1>
           <div className="grid grid-cols-1  gap-1">
             {filtered.map((item, index) => (
               <div
@@ -90,7 +95,7 @@ export default function AccountingGlossary() {
                 className="bg-white  shadow-sm hover:shadow-md transition border border-slate-200 overflow-hidden"
               >
                 <div
-                  className="p-2 cursor-pointer flex justify-between items-center"
+                  className="p-2 cursor-pointer flex justify-between items-center hover:bg-gray-200"
                   onClick={() =>
                     setSelected(selected === item.title ? null : item.title)
                   }
