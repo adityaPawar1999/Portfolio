@@ -4,7 +4,10 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout/Layout';
 import Home from './pages/Home';
 import About from './pages/About';
+import NotFound from './pages/NotFound';
+
 import Account from './Modules/Accounting/Account'
+
 
 function App() {
   return (
@@ -14,6 +17,8 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/Account" element={<Account />} />
+          
+           <Route path="*" element={<NotFound />} />
           
         </Route>
       </Routes>
