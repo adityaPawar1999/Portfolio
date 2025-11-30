@@ -69,7 +69,7 @@ const Navbar = () => {
          {/* Logo */}
          <div className="text-xl font-bold">
            <Link to="/" className="flex items-center">
-             <span className={`font-bold ${isAboutPage ? 'text-white' : scrolled ? 'text-gray-800' : 'text-white'}`}>
+             <span className={`font-bold ${isAboutPage || isAccountPage ? 'text-white' : scrolled ? 'text-gray-800' : 'text-white'}`}>
                Portfolio
              </span>
            </Link>
