@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from "react";
 import data from './accounting_data'
+import Navbar from '../../components/Navbar';
 
 
 export default function AccountingGlossary() {
@@ -18,6 +19,7 @@ export default function AccountingGlossary() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
+      <Navbar/>
       {/* Fixed Header */}
       <div className="fixed top-0 left-0 right-0 bg-white shadow-sm z-20 border-b border-slate-200">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 sm:py-6">
@@ -81,19 +83,19 @@ export default function AccountingGlossary() {
       <div className="pt-36 sm:pt-40 pb-8 px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
           {/* Grid Layout */}
-          <div className="grid grid-cols-1  gap-4">
+          <div className="grid grid-cols-1  gap-1">
             {filtered.map((item, index) => (
               <div
                 key={index}
-                className="bg-white rounded-lg shadow-sm hover:shadow-md transition border border-slate-200 overflow-hidden"
+                className="bg-white  shadow-sm hover:shadow-md transition border border-slate-200 overflow-hidden"
               >
                 <div
-                  className="p-4 cursor-pointer flex justify-between items-center"
+                  className="p-2 cursor-pointer flex justify-between items-center"
                   onClick={() =>
                     setSelected(selected === item.title ? null : item.title)
                   }
                 >
-                  <h2 className="font-semibold text-lg text-slate-800">
+                  <h2 className=" text-md text-slate-800">
                     {item.title}
                   </h2>
                   <span className="text-slate-500 text-xl font-light">

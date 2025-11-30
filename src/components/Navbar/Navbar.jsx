@@ -14,6 +14,7 @@ const Navbar = () => {
 
  const location = useLocation();
  const isAboutPage = location.pathname === "/about";
+ const isAccountPage = location.pathname === "/Account";
 
 
  useEffect(() => {
@@ -54,7 +55,7 @@ const Navbar = () => {
    <nav
      className={`fixed w-full z-50 transition-all duration-300 backdrop-blur-sm
        ${
-         isAboutPage
+         isAboutPage || isAccountPage
            ? 'bg-black py-3'
            : scrolled
            ? 'bg-white/90 shadow-md py-2'
@@ -83,7 +84,7 @@ const Navbar = () => {
                  key={link.name}
                  to={link.href}
                  className={`font-semibold transition-colors ${
-                   isAboutPage
+                   isAboutPage || isAccountPage
                      ? 'text-white hover:text-gray-300'
                      : scrolled
                      ? 'text-gray-800 hover:text-gray-600'
@@ -105,7 +106,7 @@ const Navbar = () => {
                  target="_blank"
                  rel="noopener noreferrer"
                  className={`transition-colors ${
-                   isAboutPage
+                   isAboutPage || isAccountPage
                      ? 'text-white hover:text-blue-300'
                      : scrolled
                      ? 'text-gray-800 hover:text-blue-600'
