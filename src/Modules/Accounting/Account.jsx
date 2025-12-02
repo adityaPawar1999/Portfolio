@@ -30,7 +30,7 @@ export default function AccountingGlossary() {
 
           {/* Search Bar */}
           <div className="relative">
-            <div className="relative mt-[60px] sm:mt-[100px] hidden sm:block">
+            <div className="relative mt-[60px] sm:mt-[50px] hidden sm:block">
               <input
                 type="text"
                 value={search}
