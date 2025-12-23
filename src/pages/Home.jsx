@@ -78,7 +78,7 @@ export default function Home() {
                     <li key={index}>
                       <Link
                           to={module.path}
-                          className="transition-all duration-300 hover:text-[8rem]"
+                          className="transition-all duration-300 hover:text-[4rem]"
                       >
                           {module.name}
                     </Link>
