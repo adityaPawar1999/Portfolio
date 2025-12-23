@@ -77,11 +77,11 @@ export default function Home() {
                   {modules.map((module, index) => (
                     <li key={index}>
                       <Link
-                        to={module.path}
-                        className="hover:text-gray-300 transition-colors"
+                          to={module.path}
+                          className="transition-transform duration-300 hover:scale-150"
                       >
-                        {module.name}
-                      </Link>
+                          {module.name}
+                    </Link>
                     </li>
                   ))}
                 </ul>
