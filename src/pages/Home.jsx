@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import VisitorCount from './../components/API/VisitorCount'
 
 export default function Home() {
   const [showModules, setShowModules] = useState(false);
@@ -51,6 +52,7 @@ export default function Home() {
 
               <p className="text-md text-gray-300 mt-2">
                 ERP Implementation | Technical | Functional
+                <VisitorCount />
               </p>
 
               {/* Button */}
