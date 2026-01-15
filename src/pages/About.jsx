@@ -3,7 +3,7 @@ import React from "react";
 import PlaceIcon from '@mui/icons-material/Place';
 import LocalPostOfficeIcon from '@mui/icons-material/LocalPostOffice';
 import AssessmentIcon from '@mui/icons-material/Assessment';
-import SelfPic from './img.webp'; // Same folder
+import SelfPic from './img1.jpg'; // Same folder
 
 export default function About() {
   return (
