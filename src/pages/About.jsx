@@ -38,7 +38,7 @@ export default function About() {
             <span className="block">ABOUT</span>
             <span
               className="text-transparent block"
-              style={{ WebkitTextStroke: '1px black', fontWeight: '900' }}
+              style={{ WebkitTextStroke: '1px #1477d2', fontWeight: '900' }}
             >
               ME
             </span>
