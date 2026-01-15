@@ -14,7 +14,7 @@ export default function About() {
           <img
             src={SelfPic}
             alt="Profile"
-            className="shadow-xl object-cover rounded-sm w-full max-w-lg h-[475px] mx-auto"
+            className="shadow-xl object-cover rounded-sm w-full max-w-lg h-[470px] mx-auto"
           />
         </div>
         
@@ -34,7 +34,7 @@ export default function About() {
             Technical Customization, Automation & Client Scripting<br />
           </p>
           
-          <h1 className="pt-6 text-5xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[6rem] font-extrabold tracking-tight text-black leading-[0.95]">
+          <h1 className="pt-6 text-4xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[6rem] font-extrabold tracking-tight text-black leading-[0.95]">
             <span className="block">ABOUT</span>
             <span
               className="text-transparent block"
