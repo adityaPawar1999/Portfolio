@@ -14,7 +14,7 @@ export default function About() {
           <img
             src={SelfPic}
             alt="Profile"
-            className="shadow-xl object-cover rounded-sm w-full max-w-lg h-[470px] mx-auto"
+            className="shadow-xl object-cover rounded-sm w-full max-w-md h-[470px] mx-auto"
           />
         </div>
         
