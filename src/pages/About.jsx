@@ -24,7 +24,7 @@ export default function About() {
             Consultant in ERP Implementation & Techno-Functional Excellence
           </h1>
           <p className="mt-4 text-sm md:text-[12px] text-gray-700 leading-relaxed">
-            Hi! Myself <span className="font-extrabold text-[#1a8ae5] text-md">Aditya Vilas Pawar</span>, an ERP techno-functional consultant experienced in designing and implementing practical and scalable ERP solutions. I work across accounting, inventory, manufacturing, procurement, sales, and supply chain, connecting
+            Hi! Myself <span className="font-extrabold text-[#1477d2] text-md">Aditya Vilas Pawar</span>, an ERP techno-functional consultant experienced in designing and implementing practical and scalable ERP solutions. I work across accounting, inventory, manufacturing, procurement, sales, and supply chain, connecting
             real business needs with effective technical execution. My focus is on process optimisation, automation, and building secure ERP systems that improve efficiency and support long-term business growth. With a calm problem-solving approach, I aim to deliver smooth, structured, and value-driven implementations.<br />
             <span className="font-extrabold">📌 Areas of focus:</span><br />
             ERP Implementation, Functional & Technical Consulting<br />
@@ -34,7 +34,7 @@ export default function About() {
             Technical Customization, Automation & Client Scripting<br />
           </p>
           
-          <h1 className="pt-6 text-4xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[6rem] font-extrabold tracking-tight text-[#1a8ae5] leading-[0.95]">
+          <h1 className="pt-6 text-4xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[6rem] font-extrabold tracking-tight text-[#1477d2] leading-[0.95]">
             <span className="block">ABOUT</span>
             <span
               className="text-transparent block"
@@ -78,6 +78,7 @@ export default function About() {
           </p>
         </div>
       </div>
+      <br/><br/><br/>
     </div>
   );
 }
