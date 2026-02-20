@@ -58,7 +58,7 @@ export default function Home() {
               {/* Button */}
               <div className="mt-6 sm:mt-8 flex justify-center lg:justify-start">
                 <Link
-                  to="/app"
+                  to="/about"
                   className="inline-block px-6 sm:px-8 py-3 text-sm sm:text-base font-semibold transition-transform transform bg-white text-gray-900 shadow-lg hover:scale-105"
                 >
                   Get Started
