@@ -95,9 +95,10 @@ const Navbar = () => {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`transition-colors duration-200 ${
+                  className={`text-gray-800 transition-colors duration-200 ${getHoverColor(link.name, true)}`}
+                  {/* className={`transition-colors duration-200 ${
                     isDarkBg ? 'text-white' : 'text-gray-800'
-                  } ${getHoverColor(link.name, !isDarkBg)}`}
+                  } ${getHoverColor(link.name, !isDarkBg)}`} */}
                 >
                   {link.icon}
                 </a>
