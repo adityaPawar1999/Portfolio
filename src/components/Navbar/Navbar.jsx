@@ -45,10 +45,12 @@ const Navbar = () => {
    { name: 'GitHub', icon: <GitHubIcon />, href: 'https://github.com/adityaPawar1999' },
    { name: 'LinkedIn', icon: <LinkedInIcon />, href: 'https://www.linkedin.com/in/aditya-pawar-857247216' },
    { name: 'Instagram', icon: <InstagramIcon />, href: 'https://www.instagram.com/adityapawa.r/?igsh=MXFjc3ppZW44eHh5Yw%3D%3D' },
-  
-
-
  ];
+ const hoverColors = {
+  GitHub: 'hover:text-gray-500',
+  LinkedIn: 'hover:text-blue-600',
+  Instagram: 'hover:text-pink-500',
+};
 
 
  return (
@@ -159,7 +161,7 @@ const Navbar = () => {
                  href={link.href}
                  target="_blank"
                  rel="noopener noreferrer"
-                 className="text-gray-800 hover:text-blue-600"
+                 className={`text-gray-800 transition-colors duration-200 ${hoverColors[link.name]}`}
                >
                  {link.icon}
                </a>
