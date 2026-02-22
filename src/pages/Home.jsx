@@ -12,10 +12,10 @@ export default function Home() {
 
   // Internal modules use Link → only "path" without full URL
   const modules = [
-    { name: 'Accounts', path: '/Account' },
+    { name: 'ACCOUNTS', path: '/Account' },
     { name: 'CRM', path: '/crm' },
-    { name: 'Sales', path: '/sales' },
-    { name: 'Stock', path: '/stock' }
+    { name: 'SALES', path: '/sales' },
+    { name: 'STOCK', path: '/stock' }
   ];
 
   return (
