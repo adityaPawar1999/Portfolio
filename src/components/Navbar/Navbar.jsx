@@ -32,7 +32,7 @@ const Navbar = () => {
   const socialLinks = [
     { name: 'GitHub', icon: <GitHubIcon />, href: 'https://github.com/adityaPawar1999' },
     { name: 'LinkedIn', icon: <LinkedInIcon />, href: 'https://www.linkedin.com/in/aditya-pawar-857247216' },
-    { name: 'Instagram', icon: <InstagramIcon />, href: 'https://www.instagram.com/adityapawa.r/?igsh=MXFjc3ppZW44eHh5Yw%3D%3D' },
+    { name: 'Instagram', icon: <InstagramIcon />, href: '#' },
   ];
 
   // Hover color per platform — light variant for dark bg, vivid for light bg
