@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import VisitorCount from './../components/API/VisitorCount'
+import { MODULE_ROUTES } from '../../constants';
 
 export default function Home() {
   const [showModules, setShowModules] = useState(false);
@@ -10,17 +10,8 @@ export default function Home() {
     return () => clearTimeout(timer);
   }, []);
 
-  // Internal modules use Link → only "path" without full URL
-  const modules = [
-    { name: 'ACCOUNTS', path: '/Account' },
-    { name: 'CRM', path: '/crm' },
-    { name: 'SALES', path: '/sales' },
-    { name: 'STOCK', path: '/stock' }
-  ];
-
   return (
     <header className="relative min-h-screen w-full">
-      
       {/* Background image */}
       <div 
         className="absolute inset-0 bg-cover bg-center"
@@ -52,7 +43,6 @@ export default function Home() {
 
               <p className="text-md text-gray-300 mt-2">
                 ERP Implementation | Technical | Functional
-                <VisitorCount />
               </p>
 
               {/* Button */}
@@ -76,14 +66,14 @@ export default function Home() {
             {showModules && (
               <div className="text-center lg:text-right text-white space-y-3 lg:space-y-4 lg:pr-12">
                 <ul className="space-y-2 sm:space-y-3 lg:space-y-4 text-base sm:text-lg md:text-xl lg:text-sm">
-                  {modules.map((module, index) => (
+                  {MODULE_ROUTES.map((module, index) => (
                     <li key={index}>
                       <Link
-                          to={module.path}
-                          className="transition-all duration-300 hover:text-[4rem] hover:font-bold"
+                        to={module.path}
+                        className="transition-all duration-300 hover:text-[4rem] hover:font-bold"
                       >
-                          {module.name}
-                    </Link>
+                        {module.name}
+                      </Link>
                     </li>
                   ))}
                 </ul>
@@ -96,7 +86,6 @@ export default function Home() {
     </header>
   );
 }
-
 
 
 // import React, { useState, useEffect } from 'react';

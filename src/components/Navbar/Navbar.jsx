@@ -1,49 +1,32 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import InstagramIcon from '@mui/icons-material/Instagram';
+import { useScrollEffect } from '../../hooks/useScrollEffect';
+import { getHoverColor } from '../../utils';
+import { NAV_LINKS, SOCIAL_LINKS } from '../../constants';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const scrolled = useScrollEffect(50);
 
   const location = useLocation();
   const isAboutPage = location.pathname === "/about";
   const isAccountPage = location.pathname === "/Account";
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const isBlogPage = location.pathname === "/Blogs";
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
-  const navLinks = [
-    { name: 'Home', href: '/' },
-    { name: 'About', href: '/about' },
-  ];
-
-  const socialLinks = [
-    { name: 'GitHub', icon: <GitHubIcon />, href: 'https://github.com/adityaPawar1999' },
-    { name: 'LinkedIn', icon: <LinkedInIcon />, href: 'https://www.linkedin.com/in/aditya-pawar-857247216' },
-    { name: 'Instagram', icon: <InstagramIcon />, href: '#' },
-  ];
-
-  // Hover color per platform — light variant for dark bg, vivid for light bg
-  const getHoverColor = (name, lightBg = false) => {
-    if (name === 'GitHub')    return lightBg ? 'hover:text-gray-500'  : 'hover:text-gray-400';
-    if (name === 'LinkedIn')  return lightBg ? 'hover:text-blue-600'  : 'hover:text-blue-400';
-    if (name === 'Instagram') return lightBg ? 'hover:text-pink-500'  : 'hover:text-pink-400';
-    return '';
+  const socialIcons = {
+    GitHub: GitHubIcon,
+    LinkedIn: LinkedInIcon,
+    Instagram: InstagramIcon,
   };
 
-  const isDarkBg = isAboutPage || isAccountPage || !scrolled;
+  const isDarkBg = isAboutPage || isAccountPage || isBlogPage || !scrolled;
 
   return (
     <nav
@@ -59,7 +42,6 @@ const Navbar = () => {
     >
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex justify-between items-center">
-
           {/* Logo */}
           <div className="text-xl font-bold">
             <Link to="/" className="flex items-center">
@@ -72,7 +54,7 @@ const Navbar = () => {
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
             <div className="flex space-x-6">
-              {navLinks.map((link) => (
+              {NAV_LINKS.map((link) => (
                 <Link
                   key={link.name}
                   to={link.href}
@@ -89,20 +71,22 @@ const Navbar = () => {
 
             {/* Desktop Social Icons */}
             <div className="flex space-x-4">
-              {socialLinks.map((link) => (
-                
-                  key={link.name}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`text-gray-800 transition-colors duration-200 ${getHoverColor(link.name, true)}`}
-                  {/* className={`transition-colors duration-200 ${
-                    isDarkBg ? 'text-white' : 'text-gray-800'
-                  } ${getHoverColor(link.name, !isDarkBg)}`} */}
-                >
-                  {link.icon}
-                </a>
-              ))}
+              {SOCIAL_LINKS.map((link) => {
+                const IconComponent = socialIcons[link.name];
+                return (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`transition-colors duration-200 ${
+                      isDarkBg ? 'text-white' : 'text-gray-800'
+                    } ${getHoverColor(link.name, !isDarkBg)}`}
+                  >
+                    <IconComponent />
+                  </a>
+                );
+              })}
             </div>
           </div>
 
@@ -124,7 +108,7 @@ const Navbar = () => {
           }`}
         >
           <div className="flex flex-col py-2 space-y-4 bg-white rounded-lg shadow-lg px-4">
-            {navLinks.map((link) => (
+            {NAV_LINKS.map((link) => (
               <Link
                 key={link.name}
                 to={link.href}
@@ -137,17 +121,20 @@ const Navbar = () => {
 
             {/* Mobile Social Icons */}
             <div className="flex space-x-4 border-t pt-2">
-              {socialLinks.map((link) => (
-                
-                  key={link.name}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`text-gray-800 transition-colors duration-200 ${getHoverColor(link.name, true)}`}
-                >
-                  {link.icon}
-                </a>
-              ))}
+              {SOCIAL_LINKS.map((link) => {
+                const IconComponent = socialIcons[link.name];
+                return (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`text-gray-800 transition-colors duration-200 ${getHoverColor(link.name, true)}`}
+                  >
+                    <IconComponent />
+                  </a>
+                );
+              })}
             </div>
           </div>
         </div>

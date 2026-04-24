@@ -1,9 +1,7 @@
-import React from 'react'
-import { useState } from "react";
-import data from './accounting_data'
-import Navbar from '../../components/Navbar';
+import React, { useState } from 'react';
+import data from './accounting_data';
+import Navbar from "../../components/Navbar/Navbar"
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
-
 
 export default function AccountingGlossary() {
   const [search, setSearch] = useState("");
@@ -14,20 +12,14 @@ export default function AccountingGlossary() {
     item.title.toLowerCase().includes(search.toLowerCase())
   );
 
-  const suggestions = search
-    ? filtered.slice(0, 5)
-    : [];
+  const suggestions = search ? filtered.slice(0, 5) : [];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
-      <Navbar/>
+      <Navbar />
       {/* Fixed Header */}
       <div className="fixed top-0 left-0 right-0 bg-white shadow-sm z-20 border-b border-slate-200">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 sm:py-6">
-          {/* <h1 className="text-2xl mt-8 sm:text-3xl font-bold text-slate-800 mb-3 sm:mb-4">
-            Accounting Glossary
-          </h1> */}
-
           {/* Search Bar */}
           <div className="relative">
             <div className="relative mt-[60px] sm:mt-[50px] hidden sm:block">
@@ -60,7 +52,7 @@ export default function AccountingGlossary() {
 
             {/* Suggestions */}
             {suggestions.length > 0 && showSuggestions && (
-              <ul className="absolute w-full bg-white border border-slate-200 rounded-lg mt-2 shadow-lg overflow-hidden">
+              <ul className="absolute w-full bg-white border border-slate-200 rounded-lg mt-2 shadow-lg overflow-hidden z-10">
                 {suggestions.map((item, index) => (
                   <li
                     key={index}
@@ -82,17 +74,16 @@ export default function AccountingGlossary() {
 
       {/* Content with padding for fixed header */}
       <div className="pt-36 sm:pt-40 pb-8 px-4 sm:px-6">
-        
         <div className="max-w-6xl mx-auto">
           {/* Grid Layout */}
-          <h1 className="text-2xl mt-4 sm:text-3xl font-bold text-black mb-3 sm:mb-4">
-           <AccountBalanceIcon fontSize="large" /> ACCOUNTING CONCEPT
+          <h1 className="text-2xl mt-4 sm:text-3xl font-bold text-black mb-3 sm:mb-4 flex items-center gap-2">
+            <AccountBalanceIcon fontSize="large" /> ACCOUNTING CONCEPT
           </h1>
-          <div className="grid grid-cols-1  gap-1">
+          <div className="grid grid-cols-1 gap-1">
             {filtered.map((item, index) => (
               <div
                 key={index}
-                className="bg-white  shadow-sm hover:shadow-md transition border border-slate-200 overflow-hidden"
+                className="bg-white shadow-sm hover:shadow-md transition border border-slate-200 overflow-hidden"
               >
                 <div
                   className="p-2 cursor-pointer flex justify-between items-center hover:bg-gray-200"
@@ -100,9 +91,7 @@ export default function AccountingGlossary() {
                     setSelected(selected === item.title ? null : item.title)
                   }
                 >
-                  <h2 className=" text-md text-slate-800">
-                    {item.title}
-                  </h2>
+                  <h2 className="text-md text-slate-800">{item.title}</h2>
                   <span className="text-slate-500 text-xl font-light">
                     {selected === item.title ? "−" : "+"}
                   </span>
