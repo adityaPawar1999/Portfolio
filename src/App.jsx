@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
 import Home from "./pages/Home/Home";
 import About from "./pages/About/About";
+import ChatbotUI from "./pages/ChatbotUI/ChatbotUI";
 import Blog from "./pages/Blogs/Blog";
 import SingleBlog from "./pages/Blogs/SingleBlog/SingleBlog";
 
@@ -17,8 +18,8 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
-          {/* Home */}
           <Route index element={<Home />} />
+          <Route path="ChatbotUI" element={<ChatbotUI />} />
 
           {/* Other Pages */}
           <Route path="about" element={<About />} />

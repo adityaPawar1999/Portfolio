@@ -4,7 +4,7 @@ import Navbar from '../Navbar/Navbar';
 
 const Layout = () => {
   const location = useLocation();
-  const showNavbar = location.pathname === '/' || location.pathname === '/about' || location.pathname.startsWith('/blog');
+  const showNavbar = location.pathname === '/' || location.pathname === '/about' || location.pathname.startsWith('/blog') || location.pathname === '/ChatbotUI';
 
   return (
     <>

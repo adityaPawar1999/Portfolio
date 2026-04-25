@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { MODULE_ROUTES } from '../../constants';
+import ChatIcon from '@mui/icons-material/Chat';
 
 export default function Home() {
   const [showModules, setShowModules] = useState(false);
@@ -48,10 +49,10 @@ export default function Home() {
               {/* Button */}
               <div className="mt-6 sm:mt-8 flex justify-center lg:justify-start">
                 <Link
-                  to="/about"
-                  className="inline-block px-6 sm:px-8 py-3 text-sm sm:text-base font-semibold transition-transform transform bg-white text-gray-900 shadow-lg hover:scale-105"
+                  to="/ChatbotUI"
+                  className="text-white inline-block px-6 sm:px-8 py-2 text-sm sm:text-base font-semibold transition-transform transform border border-white text-gray-900 shadow-lg hover:scale-105"
                 >
-                  Get Started
+                 <ChatIcon className="mr-2 text-white" /> Get Started
                 </Link>
               </div>
             </div>

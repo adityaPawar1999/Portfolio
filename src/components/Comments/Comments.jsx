@@ -104,7 +104,7 @@ export default function Comments({ postId, postTitle }) {
 
       <button
         disabled={!text.trim() || submitting}
-        className="px-[100px] py-2 text-xs font-medium rounded-sm bg-black text-white hover:bg-gray-800 disabled:opacity-40 transition"
+        className="px-4 py-2 text-xs font-medium rounded-lg bg-black text-white hover:bg-gray-800 disabled:opacity-40 transition"
       >
         {submitting ? "..." : "Post"}
       </button>

@@ -17,6 +17,7 @@ const Navbar = () => {
   const isAboutPage = location.pathname === "/about";
   const isAccountPage = location.pathname === "/Account";
   const isBlogPage = location.pathname.startsWith("/blog");
+  const isChatbotPage = location.pathname === "/ChatbotUI";
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
@@ -26,13 +27,13 @@ const Navbar = () => {
     Instagram: InstagramIcon,
   };
 
-  const isDarkBg = isAboutPage || isAccountPage || isBlogPage || !scrolled;
+  const isDarkBg = isAboutPage || isAccountPage || isBlogPage || isChatbotPage || !scrolled;
 
   return (
     <nav
       className={`fixed w-full z-50 transition-all duration-300 backdrop-blur-sm
         ${
-          isAboutPage || isAccountPage || isBlogPage
+          isAboutPage || isAccountPage || isBlogPage || isChatbotPage
             ? 'bg-black py-3'
             : scrolled
             ? 'bg-white/90 shadow-md py-2'
