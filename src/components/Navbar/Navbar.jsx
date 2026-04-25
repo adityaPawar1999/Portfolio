@@ -16,7 +16,7 @@ const Navbar = () => {
   const location = useLocation();
   const isAboutPage = location.pathname === "/about";
   const isAccountPage = location.pathname === "/Account";
-  const isBlogPage = location.pathname === "/Blogs";
+  const isBlogPage = location.pathname.startsWith("/blog");
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
@@ -32,7 +32,7 @@ const Navbar = () => {
     <nav
       className={`fixed w-full z-50 transition-all duration-300 backdrop-blur-sm
         ${
-          isAboutPage || isAccountPage
+          isAboutPage || isAccountPage || isBlogPage
             ? 'bg-black py-3'
             : scrolled
             ? 'bg-white/90 shadow-md py-2'
@@ -46,7 +46,7 @@ const Navbar = () => {
           <div className="text-xl font-bold">
             <Link to="/" className="flex items-center">
               <span className={`font-bold ${isDarkBg ? 'text-white' : 'text-gray-800'}`}>
-                Portfolio
+                Aditya.Dev
               </span>
             </Link>
           </div>
