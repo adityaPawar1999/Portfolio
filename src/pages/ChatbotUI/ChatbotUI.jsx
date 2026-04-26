@@ -1,18 +1,56 @@
 import React, { useState, useRef, useEffect } from "react";
 import { getBotReply } from "../../ChatBot/chatbotBrain"; // your logic file
+import { db } from "../../firebase";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 export default function ChatbotUI() {
   const [messages, setMessages] = useState([
-    { role: "bot", text: "Hi 👋 Ask me anything about Aditya's profile." }
+    { role: "bot", text: "Hi 👋 Ask me anything about Aditya's profile." },
+    { role: "bot", text: " Just for record ,what is your name..?" }
   ]);
   const [input, setInput] = useState("");
+  const [awaitingName, setAwaitingName] = useState(true); // Track if we're waiting for name
   const bottomRef = useRef();
 
-  const sendMessage = () => {
+  // Check if response is negative
+  const isNegativeResponse = (text) => {
+    const negativeKeywords = ["no", "not needed", "not necessary", "don't need", "skip", "nope", "nah"];
+    const lowerText = text.toLowerCase().trim();
+    return negativeKeywords.some(keyword => lowerText.includes(keyword));
+  };
+
+  const sendMessage = async () => {
     if (!input.trim()) return;
 
     const userMsg = { role: "user", text: input };
-    const botMsg = { role: "bot", text: getBotReply(input) };
+    let botMsg;
+
+    // If we're waiting for name and user didn't give a negative response
+    if (awaitingName && !isNegativeResponse(input)) {
+      const userName = input.trim();
+      
+      // Store name in Firebase
+      try {
+        await addDoc(collection(db, "userNames"), {
+          name: userName,
+          timestamp: serverTimestamp()
+        });
+        console.log("Name stored successfully!");
+      } catch (err) {
+        console.error("Error storing name:", err);
+      }
+
+      // Reply with their name
+      botMsg = { role: "bot", text: `Hi Mr ${userName}! 👋 Nice to meet you. What would you like to know about Aditya?` };
+      setAwaitingName(false);
+    } else if (awaitingName && isNegativeResponse(input)) {
+      // User declined to share name
+      botMsg = { role: "bot", text: `No problem! 😊 What would you like to know about Aditya?` };
+      setAwaitingName(false);
+    } else {
+      // Normal bot response
+      botMsg = { role: "bot", text: getBotReply(input) };
+    }
 
     setMessages((prev) => [...prev, userMsg, botMsg]);
     setInput("");

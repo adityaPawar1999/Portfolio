@@ -8,6 +8,8 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import { useScrollEffect } from '../../hooks/useScrollEffect';
 import { getHoverColor } from '../../utils';
 import { NAV_LINKS, SOCIAL_LINKS } from '../../constants';
+import ChatIcon from '@mui/icons-material/Chat';
+import ForumIcon from '@mui/icons-material/Forum';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,6 +27,7 @@ const Navbar = () => {
     GitHub: GitHubIcon,
     LinkedIn: LinkedInIcon,
     Instagram: InstagramIcon,
+    Chat: ForumIcon
   };
 
   const isDarkBg = isAboutPage || isAccountPage || isBlogPage || isChatbotPage || !scrolled;
@@ -74,6 +77,22 @@ const Navbar = () => {
             <div className="flex space-x-4">
               {SOCIAL_LINKS.map((link) => {
                 const IconComponent = socialIcons[link.name];
+                
+                // Handle internal links (Chat) differently
+                if (link.name === 'Chat') {
+                  return (
+                    <Link
+                      key={link.name}
+                      to={link.href}
+                      className={`transition-colors duration-200 ${
+                        isDarkBg ? 'text-white' : 'text-gray-800'
+                      } ${getHoverColor(link.name, !isDarkBg)}`}
+                    >
+                      <IconComponent />
+                    </Link>
+                  );
+                }
+                
                 return (
                   <a
                     key={link.name}
@@ -124,6 +143,21 @@ const Navbar = () => {
             <div className="flex space-x-4 border-t pt-2">
               {SOCIAL_LINKS.map((link) => {
                 const IconComponent = socialIcons[link.name];
+                
+                // Handle internal links (Chat) differently
+                if (link.name === 'Chat') {
+                  return (
+                    <Link
+                      key={link.name}
+                      to={link.href}
+                      className={`text-gray-800 transition-colors duration-200 ${getHoverColor(link.name, true)}`}
+                      onClick={() => setIsOpen(false)}
+                    >
+                      <IconComponent />
+                    </Link>
+                  );
+                }
+                
                 return (
                   <a
                     key={link.name}

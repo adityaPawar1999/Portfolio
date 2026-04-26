@@ -18,10 +18,21 @@ export function getBotReply(query) {
   }
 //------------------------------------------------------------------------------------------------------
   // ✅ BAsic Details
-  const nameKeywords = ["name", "who are you", "who are u", "your name", "who is this" ,"what should i call you"];
-    if (nameKeywords.some(keyword => q.includes(keyword))) {
-    return resumeData.name;
-}
+    const nameKeywords = ["name", "who are you", "who are u", "your name", "who is this" ,"what should i call you"];
+        if (nameKeywords.some(keyword => q.includes(keyword))) {
+            return resumeData.name;
+        }
+
+    const currentlocation = ["location" , "current location", "where you live", "what is your location"];
+        if (currentlocation.some(keyword => q.includes(keyword))) {
+            return resumeData.currentlocation;
+        }
+
+    const hometown = ["hometown", "where you from", "your hometown"];
+        if (hometown.some(keyword => q.includes(keyword))) {
+            return resumeData.hometown;
+        }
+
   if (q.includes("about yourself")) return resumeData.aboutme;
   if (q.includes("about")) return resumeData.aboutme;
 
@@ -30,8 +41,6 @@ export function getBotReply(query) {
     return resumeData.role;
 
   // ✅ location
-  if (q.includes("location") || q.includes("where"))
-    return resumeData.location;
 
   // ✅ skills
   if (q.includes("skill"))

@@ -5,7 +5,7 @@ import LocalPostOfficeIcon from '@mui/icons-material/LocalPostOffice';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import SelfPic from './img1.jpg'; // Same folder
 import Signup from "../Signup/Signup";
-import Blog from "../Blogs/Blog";
+
 
 export default function About() {
   return (
@@ -81,7 +81,6 @@ export default function About() {
         </div>
       </div>
       <br/><br/><br/>
-      <Blog />
     </div>
   );
 }

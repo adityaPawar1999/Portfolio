@@ -52,6 +52,8 @@ export default function Blog() {
   }, [activeCategory, search, sort]);
 
   return (
+    <>
+    <br/>
     <div className="min-h-screen bg-gray-50 px-6 py-10">
       <div className="max-w-6xl mx-auto">
 
@@ -161,18 +163,13 @@ export default function Blog() {
                       alt={post.title}
                       className="w-full h-48 object-cover group-hover:scale-[1.02] transition-transform duration-300"
                     />
-                    <span
-                      className={`absolute top-3 left-3 text-[10px] font-medium uppercase tracking-wide px-2.5 py-0.5 rounded-full border
-                        ${meta.badgeBg} ${meta.badgeText} ${meta.badgeBorder}`}
-                    >
-                      {post.category}
-                    </span>
                   </div>
 
                   {/* Body */}
                   <div className="p-4">
                     <h2 className="font-serif text-[15px] font-medium text-gray-900 leading-snug mb-1.5 line-clamp-2">
-                      {post.title}
+                      {post.title} <span className={`text-[10px] font-bold uppercase tracking-wide px-3.5 py-1 rounded-full border
+                        ${meta.badgeBg} ${meta.badgeText} ${meta.badgeBorder}`}>   {post.category} </span>
                     </h2>
                     <p className="text-[12px] text-gray-400 font-light leading-relaxed line-clamp-3">
                       {post.description}
@@ -215,5 +212,6 @@ export default function Blog() {
         )}
       </div>
     </div>
+    </>
   );
 }

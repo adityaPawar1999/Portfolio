@@ -25,6 +25,12 @@ export const SOCIAL_LINKS = [
     hoverColorDark: 'hover:text-pink-400',
     hoverColorLight: 'hover:text-pink-500',
   },
+  {
+    name: 'Chat',
+    href: '/ChatbotUI',
+    hoverColorDark: 'hover:text-green-400',
+    hoverColorLight: 'hover:text-green-600',
+  }
 ];
 
 // Module Routes
