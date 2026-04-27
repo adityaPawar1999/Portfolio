@@ -160,7 +160,7 @@ export default function SingleBlog() {
                 className="flex flex-col gap-0.5 text-left px-3.5 py-2.5 border border-gray-200 rounded-sm bg-white hover:bg-gray-50 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
               >
                 <span className="text-[10px] uppercase tracking-wider  font-extrabold">← Previous</span>
-                <span className="text-xs text-gray-600 font-medium truncate">
+                <span className="hidden lg:inline text-xs text-gray-600 font-medium truncate">
                   {prevBlog?.title || "No previous post"}
                 </span>
               </button>
@@ -170,7 +170,7 @@ export default function SingleBlog() {
                 className="flex flex-col gap-0.5 text-right items-end px-3.5 py-2.5 rounded-sm bg-gray-900 text-white hover:bg-gray-800 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
               >
                 <span className="text-[10px] uppercase tracking-wider text-gray-400 font-extrabold text-center ">Next →</span>
-                <span className="text-xs text-gray-200  truncate">
+                <span className="hidden lg:inline text-xs text-gray-200  truncate sm-text-red">
                   {nextBlog?.title || "No next post"}
                 </span>
               </button>
