@@ -1,25 +1,292 @@
 import React, { useState, useRef, useEffect } from "react";
+import styled from "styled-components";
 import { getBotReply } from "../../ChatBot/chatbotBrain";
+import { useTheme } from "../../themes/ThemeContext";
 import SmartToyIcon from "@mui/icons-material/SmartToy";
 import SendIcon from "@mui/icons-material/Send";
 
-// ── Color Variables ──────────────────────────────────────────
-const COLORS = {
-  primary:       "#1477d2",
-  primaryDark:   "#1260b0",
-  primaryLight:  "#dbeafe",
-  textDark:      "#0f1a2b",
-  textMid:       "#374151",
-  textMuted:     "#6b7280",
-  textWhite:     "#ffffff",
-  bgPage:        "#f1f5f9",
-  bgChat:        "#ffffff",
-  bgUserBubble:  "#1477d2",
-  bgBotBubble:   "#f1f5f9",
-  borderLight:   "#e2e8f0",
-  headerBg:      "#ffffff",
-};
-// ─────────────────────────────────────────────────────────────
+const ChatPageContainer = styled.div`
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 16px;
+  background-color: ${props => props.theme.bgPage};
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  transition: background-color 0.3s ease;
+
+  @media (max-width: 768px) {
+    padding: 80px 16px 16px;
+  }
+`;
+
+const ChatContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 560px;
+  height: 82vh;
+  background-color: ${props => props.theme.bgCard};
+  border: 1px solid ${props => props.theme.borderCard};
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: ${props => props.theme.shadowLg};
+  animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.3s ease;
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+`;
+
+const ChatHeader = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  border-bottom: 1px solid ${props => props.theme.borderCard};
+  background-color: ${props => props.theme.bgCard};
+  transition: all 0.3s ease;
+`;
+
+const AvatarBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background-color: ${props => props.theme.primaryLight};
+  flex-shrink: 0;
+
+  svg {
+    color: ${props => props.theme.primary};
+    font-size: 20px;
+  }
+`;
+
+const HeaderTitle = styled.p`
+  font-size: 14px;
+  font-weight: 700;
+  color: ${props => props.theme.textDark};
+  margin: 0;
+  transition: color 0.3s ease;
+`;
+
+const HeaderSubtitle = styled.p`
+  font-size: 11px;
+  color: ${props => props.theme.textMuted};
+  margin: 4px 0 0 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.3s ease;
+
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: ${props => props.theme.accentGreen};
+  }
+`;
+
+const MessagesArea = styled.div`
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: ${props => props.theme.bgPage};
+  transition: background-color 0.3s ease;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: ${props => props.theme.borderCard};
+    border-radius: 4px;
+
+    &:hover {
+      background: ${props => props.theme.borderMuted};
+    }
+  }
+`;
+
+const BubbleWrapper = styled.div`
+  display: flex;
+  justify-content: ${props => props.isUser ? 'flex-end' : 'flex-start'};
+  gap: 8px;
+  animation: bubbleIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+  @keyframes bubbleIn {
+    from { opacity: 0; transform: scale(0.92) translateY(6px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+`;
+
+const BotAvatarSmall = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background-color: ${props => props.theme.primaryLight};
+  flex-shrink: 0;
+  margin-top: 4px;
+
+  svg {
+    color: ${props => props.theme.primary};
+    font-size: 15px;
+  }
+`;
+
+const MessageBubble = styled.div`
+  max-width: 75%;
+  padding: 10px 14px;
+  font-size: 13px;
+  line-height: 1.6;
+  border-radius: ${props => props.isUser ? '18px 18px 4px 18px' : '18px 18px 18px 4px'};
+  background-color: ${props => props.isUser ? props.theme.primary : props.theme.bgCard};
+  color: ${props => props.isUser ? props.theme.textWhite : props.theme.textMid};
+  box-shadow: ${props => props.isUser ? `0 2px 8px ${props.theme.primaryLight}40` : 'none'};
+  word-break: break-word;
+  transition: all 0.3s ease;
+`;
+
+const ThinkingDotsContainer = styled.div`
+  display: inline-block;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 12px 16px;
+`;
+
+const Dot = styled.span`
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: ${props => props.theme.textMuted};
+  animation: bounce 1s infinite ease-in-out;
+  animation-delay: ${props => props.delay}ms;
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); opacity: 0.4; }
+    50% { transform: translateY(-5px); opacity: 1; }
+  }
+`;
+
+const SuggestedChipsContainer = styled.div`
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 8px 16px;
+  border-top: 1px solid ${props => props.theme.borderCard};
+  background-color: ${props => props.theme.bgCard};
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  transition: all 0.3s ease;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;
+
+const SuggestedChip = styled.button`
+  font-size: 11px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid ${props => props.theme.borderCard};
+  color: ${props => props.theme.primary};
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+
+  &:hover {
+    background-color: ${props => props.theme.primaryLight};
+    border-color: ${props => props.theme.primary};
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+`;
+
+const InputBar = styled.div`
+  display: flex;
+  gap: 8px;
+  padding: 12px 16px;
+  border-top: 1px solid ${props => props.theme.borderCard};
+  background-color: ${props => props.theme.bgCard};
+  transition: all 0.3s ease;
+`;
+
+const ChatInput = styled.input`
+  flex: 1;
+  height: 40px;
+  padding: 0 14px;
+  font-size: 13px;
+  font-family: 'DM Sans', inherit;
+  border: 1px solid ${props => props.theme.borderCard};
+  border-radius: 10px;
+  outline: none;
+  color: ${props => props.theme.textDark};
+  background-color: ${props => props.theme.bgPage};
+  transition: all 0.2s ease;
+
+  &::placeholder {
+    color: ${props => props.theme.textMuted};
+  }
+
+  &:focus {
+    border-color: ${props => props.theme.primary};
+    box-shadow: 0 0 0 3px ${props => props.theme.primaryLight};
+  }
+`;
+
+const SendButton = styled.button`
+  background-color: ${props => props.theme.primary};
+  color: ${props => props.theme.textWhite};
+  border-radius: 10px;
+  padding: 0 16px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.18s ease;
+
+  &:hover:not(:disabled) {
+    background-color: ${props => props.theme.primaryHover};
+  }
+
+  &:active:not(:disabled) {
+    transform: scale(0.97);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  svg {
+    font-size: 15px;
+  }
+`;
 
 const SUGGESTED = [
   "What are Aditya's skills?",
@@ -27,7 +294,7 @@ const SUGGESTED = [
   "Current role?",
 ];
 
-// Typing animation component — renders text letter by letter
+// Typing animation component
 function TypingMessage({ text, onDone }) {
   const [displayed, setDisplayed] = useState("");
   const [done, setDone] = useState(false);
@@ -49,30 +316,41 @@ function TypingMessage({ text, onDone }) {
     }, 18);
 
     return () => clearInterval(interval);
-  }, [text]);
+  }, [text, onDone]);
 
   return (
     <span>
       {displayed}
       {!done && (
-        <span className="typing-cursor" />
+        <span style={{
+          display: 'inline-block',
+          width: '2px',
+          height: '13px',
+          backgroundColor: 'currentColor',
+          marginLeft: '2px',
+          verticalAlign: 'middle',
+          borderRadius: '1px',
+          animation: 'blink 0.7s infinite',
+          '@keyframes blink': '0%, 100% { opacity: 1; } 50% { opacity: 0; }',
+        }} />
       )}
     </span>
   );
 }
 
-// Pulsing dots while waiting for reply
+// Thinking dots component
 function ThinkingDots() {
   return (
-    <div className="flex items-center gap-1 px-4 py-3">
-      <span className="dot" style={{ animationDelay: "0ms" }} />
-      <span className="dot" style={{ animationDelay: "160ms" }} />
-      <span className="dot" style={{ animationDelay: "320ms" }} />
-    </div>
+    <ThinkingDotsContainer>
+      <Dot delay={0} />
+      <Dot delay={160} />
+      <Dot delay={320} />
+    </ThinkingDotsContainer>
   );
 }
 
 export default function ChatbotUI() {
+  const { theme } = useTheme();
   const [messages, setMessages] = useState([
     { role: "bot", text: "Hi 👋 I'm AdiBot! Ask me anything about Aditya's profile, skills, or experience.", animate: false }
   ]);
@@ -96,7 +374,6 @@ export default function ChatbotUI() {
     setInput("");
     setThinking(true);
 
-    // Simulate slight delay for realism
     setTimeout(() => {
       const reply = getBotReply(msg);
       setThinking(false);
@@ -106,243 +383,71 @@ export default function ChatbotUI() {
   };
 
   return (
-    <div
-      className="w-full min-h-screen flex items-center justify-center py-10 px-4"
-      style={{ background: COLORS.bgPage, fontFamily: "'DM Sans', sans-serif" }}
-    >
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap');
-
-        .chat-container {
-          animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        @keyframes slideUp {
-          from { opacity: 0; transform: translateY(24px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
-
-        .bubble-in {
-          animation: bubbleIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        @keyframes bubbleIn {
-          from { opacity: 0; transform: scale(0.92) translateY(6px); }
-          to   { opacity: 1; transform: scale(1) translateY(0); }
-        }
-
-        .typing-cursor {
-          display: inline-block;
-          width: 2px;
-          height: 13px;
-          background: ${COLORS.primary};
-          margin-left: 2px;
-          vertical-align: middle;
-          border-radius: 1px;
-          animation: blink 0.7s infinite;
-        }
-        @keyframes blink {
-          0%, 100% { opacity: 1; }
-          50%       { opacity: 0; }
-        }
-
-        .dot {
-          display: inline-block;
-          width: 7px; height: 7px;
-          border-radius: 50%;
-          background: ${COLORS.textMuted};
-          animation: bounce 1s infinite ease-in-out;
-        }
-        @keyframes bounce {
-          0%, 100% { transform: translateY(0); opacity: 0.4; }
-          50%       { transform: translateY(-5px); opacity: 1; }
-        }
-
-        .suggest-chip {
-          font-size: 11px;
-          padding: 5px 12px;
-          border-radius: 999px;
-          border: 1px solid ${COLORS.borderLight};
-          color: ${COLORS.primary};
-          background: ${COLORS.bgChat};
-          cursor: pointer;
-          transition: background 0.15s, border-color 0.15s;
-          white-space: nowrap;
-        }
-        .suggest-chip:hover {
-          background: ${COLORS.primaryLight};
-          border-color: ${COLORS.primary};
-        }
-
-        .send-btn {
-          background: ${COLORS.primary};
-          color: ${COLORS.textWhite};
-          border-radius: 10px;
-          padding: 0 16px;
-          height: 40px;
-          display: flex;
-          align-items: center;
-          gap: 4px;
-          font-size: 13px;
-          font-weight: 600;
-          border: none;
-          cursor: pointer;
-          transition: background 0.18s, transform 0.1s;
-        }
-        .send-btn:hover  { background: ${COLORS.primaryDark}; }
-        .send-btn:active { transform: scale(0.97); }
-        .send-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-
-        .chat-input {
-          flex: 1;
-          height: 40px;
-          padding: 0 14px;
-          font-size: 13px;
-          font-family: 'DM Sans', sans-serif;
-          border: 1px solid ${COLORS.borderLight};
-          border-radius: 10px;
-          outline: none;
-          color: ${COLORS.textDark};
-          background: ${COLORS.bgPage};
-          transition: border-color 0.2s, box-shadow 0.2s;
-        }
-        .chat-input:focus {
-          border-color: ${COLORS.primary};
-          box-shadow: 0 0 0 3px ${COLORS.primaryLight};
-        }
-
-        .scroll-area::-webkit-scrollbar { width: 4px; }
-        .scroll-area::-webkit-scrollbar-track { background: transparent; }
-        .scroll-area::-webkit-scrollbar-thumb { background: ${COLORS.borderLight}; border-radius: 4px; }
-      `}</style>
-
-      {/* ── Chat Window ── */}
-      <div
-        className="chat-container flex flex-col w-full rounded-2xl overflow-hidden"
-        style={{
-          maxWidth: 560,
-          height: "82vh",
-          background: COLORS.bgChat,
-          border: `1px solid ${COLORS.borderLight}`,
-          boxShadow: "0 8px 40px rgba(0,0,0,0.10)",
-        }}
-      >
-
-        {/* ── Header ── */}
-        <div
-          className="flex items-center gap-3 px-5 py-4"
-          style={{
-            borderBottom: `1px solid ${COLORS.borderLight}`,
-            background: COLORS.headerBg,
-          }}
-        >
-          <div
-            className="flex items-center justify-center rounded-xl"
-            style={{ width: 38, height: 38, background: COLORS.primaryLight }}
-          >
-            <SmartToyIcon style={{ color: COLORS.primary, fontSize: 20 }} />
-          </div>
+    <ChatPageContainer>
+      <ChatContainer>
+        {/* Header */}
+        <ChatHeader>
+          <AvatarBox>
+            <SmartToyIcon />
+          </AvatarBox>
           <div>
-            <p style={{ fontSize: 14, fontWeight: 700, color: COLORS.textDark, margin: 0 }}>AdiBot</p>
-            <p style={{ fontSize: 11, color: COLORS.accentGreen, margin: 0, display: "flex", alignItems: "center", gap: 4 }}>
-              <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#22c55e", display: "inline-block" }} />
-              <span style={{ color: COLORS.textMuted }}>Ask me about Aditya</span>
-            </p>
+            <HeaderTitle>AdiBot</HeaderTitle>
+            <HeaderSubtitle>Ask me about Aditya</HeaderSubtitle>
           </div>
-        </div>
+        </ChatHeader>
 
-        {/* ── Messages ── */}
-        <div
-          className="scroll-area flex-1 overflow-y-auto px-4 py-4"
-          style={{ display: "flex", flexDirection: "column", gap: 10 }}
-        >
+        {/* Messages */}
+        <MessagesArea>
           {messages.map((m, i) => (
-            <div
-              key={i}
-              className="bubble-in flex"
-              style={{ justifyContent: m.role === "user" ? "flex-end" : "flex-start" }}
-            >
-              {/* Bot avatar dot */}
-              {m.role === "bot" && (
-                <div
-                  className="flex-shrink-0 mr-2 mt-1 flex items-center justify-center rounded-lg"
-                  style={{ width: 28, height: 28, background: COLORS.primaryLight }}
-                >
-                  <SmartToyIcon style={{ color: COLORS.primary, fontSize: 15 }} />
-                </div>
-              )}
-
-              <div
-                style={{
-                  maxWidth: "75%",
-                  padding: "10px 14px",
-                  fontSize: 13,
-                  lineHeight: 1.6,
-                  borderRadius: m.role === "user" ? "18px 18px 4px 18px" : "18px 18px 18px 4px",
-                  background: m.role === "user" ? COLORS.bgUserBubble : COLORS.bgBotBubble,
-                  color: m.role === "user" ? COLORS.textWhite : COLORS.textMid,
-                  boxShadow: m.role === "user" ? "0 2px 8px rgba(20,119,210,0.18)" : "none",
-                }}
-              >
+            <BubbleWrapper key={i} isUser={m.role === "user"}>
+              {m.role === "bot" && <BotAvatarSmall><SmartToyIcon /></BotAvatarSmall>}
+              <MessageBubble isUser={m.role === "user"}>
                 {m.role === "bot" && m.animate
                   ? <TypingMessage text={m.text} onDone={() => setIsTyping(false)} />
                   : m.text
                 }
-              </div>
-            </div>
+              </MessageBubble>
+            </BubbleWrapper>
           ))}
 
-          {/* Thinking dots */}
           {thinking && (
-            <div className="bubble-in flex items-start gap-2">
-              <div
-                className="flex-shrink-0 flex items-center justify-center rounded-lg"
-                style={{ width: 28, height: 28, background: COLORS.primaryLight }}
-              >
-                <SmartToyIcon style={{ color: COLORS.primary, fontSize: 15 }} />
-              </div>
-              <div style={{ background: COLORS.bgBotBubble, borderRadius: "18px 18px 18px 4px", display: "inline-block" }}>
+            <BubbleWrapper isUser={false}>
+              <BotAvatarSmall><SmartToyIcon /></BotAvatarSmall>
+              <div style={{ background: theme.bgCard, borderRadius: "18px 18px 18px 4px" }}>
                 <ThinkingDots />
               </div>
-            </div>
+            </BubbleWrapper>
           )}
 
           <div ref={bottomRef} />
-        </div>
+        </MessagesArea>
 
-        {/* ── Suggested chips ── */}
-        <div
-          className="flex gap-2 overflow-x-auto px-4 py-2"
-          style={{ borderTop: `1px solid ${COLORS.borderLight}`, scrollbarWidth: "none" }}
-        >
+        {/* Suggested Chips */}
+        <SuggestedChipsContainer>
           {SUGGESTED.map((s) => (
-            <button key={s} className="suggest-chip flex-shrink-0" onClick={() => sendMessage(s)}>
+            <SuggestedChip key={s} onClick={() => sendMessage(s)}>
               {s}
-            </button>
+            </SuggestedChip>
           ))}
-        </div>
+        </SuggestedChipsContainer>
 
-        {/* ── Input Bar ── */}
-        <div
-          className="flex gap-2 px-4 py-3"
-          style={{ borderTop: `1px solid ${COLORS.borderLight}` }}
-        >
-          <input
-            className="chat-input"
+        {/* Input Bar */}
+        <InputBar>
+          <ChatInput
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Ask about skills, experience..."
             onKeyDown={(e) => e.key === "Enter" && sendMessage()}
           />
-          <button
-            className="send-btn"
+          <SendButton
             onClick={() => sendMessage()}
             disabled={thinking || isTyping || !input.trim()}
           >
-            <SendIcon style={{ fontSize: 15 }} />
+            <SendIcon />
             Send
-          </button>
-        </div>
-
-      </div>
-    </div>
+          </SendButton>
+        </InputBar>
+      </ChatContainer>
+    </ChatPageContainer>
   );
 }
