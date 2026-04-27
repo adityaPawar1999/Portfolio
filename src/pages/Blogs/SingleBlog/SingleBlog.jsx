@@ -133,9 +133,9 @@ export default function SingleBlog() {
               )}
 
               {/* Body */}
-              <p className="text-[14px] text-gray-500 leading-[1.85] font-light">
-                {blog.description}
-              </p>
+              <p className="text-[14px] text-gray-700 leading-[1.85] font-light"
+                  dangerouslySetInnerHTML={{ __html: blog.description }}
+              />
             </div>
 
             {/* Like + Share */}

@@ -264,7 +264,7 @@ export default function Home() {
                   {MODULE_ROUTES.map((module, index) => (
                     <li
                       key={index}
-                      className="module-item flex items-center lg:justify-end"
+                      className="module-item flex items-center lg:justify-end hover-cursor-pointer "
                       style={{ animationDelay: `${index * 80}ms` }}
                       onMouseEnter={() => setHoveredModule(index)}
                       onMouseLeave={() => setHoveredModule(null)}
@@ -291,13 +291,6 @@ export default function Home() {
 
         </div>
       </div>
-
-      {/* ── Scroll hint (bottom center) ── */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 scroll-hint">
-        <span style={{ fontSize: 10, color: COLORS.textMuted, letterSpacing: "0.1em", textTransform: "uppercase" }}>Scroll</span>
-        <div style={{ width: 1, height: 28, background: COLORS.borderWhite }} />
-      </div>
-
     </header>
   );
 }
