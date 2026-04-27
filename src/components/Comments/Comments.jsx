@@ -129,6 +129,13 @@ export default function Comments({ postId, postTitle }) {
           .join("")
           .slice(0, 2)
           .toUpperCase();
+        const date = c.createdAt?.toDate();
+        const formattedDate = date
+          ? date.toLocaleString("en-IN", {
+            dateStyle: "medium",
+            timeStyle: "short"
+        })
+          : "Just now";
 
         return (
           <div key={c.id} className="flex gap-3">
@@ -142,6 +149,9 @@ export default function Comments({ postId, postTitle }) {
               <div className="bg-gray-50 border border-gray-100 rounded-sm px-3 py-2">
                 <p className="text-xs font-bold text-gray-800 mb-1">
                   {name} : <span className="text-gray-500 leading-relaxed font-medium"> {c.text}</span>
+                </p>
+                <p className="text-[10px] text-gray-400">
+                  {formattedDate}
                 </p>
               </div>
             </div>
