@@ -5,6 +5,7 @@ import blogData from "../BlogData";
 import Comments from "../../../components/Comments/Comments";
 import LikeButton from "../../../components/LikeButton/LikeButton";
 import { getCategoriesWithCount, getCategoryMeta } from "../Catorory/categoryUtils";
+import { useTheme } from "../../../themes/ThemeContext";
 
 function readTime(text = "") {
   return Math.max(1, Math.round(text.split(" ").length / 200));
@@ -24,13 +25,14 @@ function formatDate(d) {
 export default function SingleBlog() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { theme } = useTheme();
 
   const categories = getCategoriesWithCount();
 
   const currentIndex = blogData.findIndex((b) => b.id === parseInt(id));
   const blog = blogData[currentIndex];
 
-  if (!blog) return <h2 className="p-6 text-gray-500">Blog not found</h2>;
+  if (!blog) return <h2 className="p-6" style={{ color: theme.textMuted }}>Blog not found</h2>;
 
   const prevBlog = blogData[currentIndex - 1] || null;
   const nextBlog = blogData[currentIndex + 1] || null;
@@ -45,19 +47,25 @@ export default function SingleBlog() {
 
   return (
     
-    <div className="min-h-screen bg-gray-50 px-4 py-6 font-sans ">
+    <div style={{ minHeight: "100vh", backgroundColor: theme.bgPage, color: theme.textDark }} className="px-4 py-6 font-sans transition-colors duration-300">
       <br/><br/>
       {/* Topbar */}
       <div className="max-w-5xl mx-auto flex items-center gap-3 mb-5">
         <button
           onClick={() => navigate(-1)}
-          className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-medium border border-gray-200 rounded-lg bg-white hover:bg-gray-50 text-gray-500 transition-colors"
+          style={{
+            border: `1px solid ${theme.borderCard}`,
+            backgroundColor: theme.bgCard,
+            color: theme.textMuted,
+          }}
+          className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-medium rounded-lg hover:opacity-80 transition-colors"
         >
           ← Back
         </button>
-        <nav className="flex items-center gap-1.5 text-xs text-gray-400">
+        <nav className="flex items-center gap-1.5 text-xs" style={{ color: theme.textMuted }}>
           <span
-            className="hover:text-gray-600 cursor-pointer"
+            className="hover:opacity-80 cursor-pointer transition-opacity"
+            style={{ color: theme.textMuted }}
             onClick={() => navigate("/blogs")}
           >
             Blog
@@ -73,7 +81,11 @@ export default function SingleBlog() {
         <div className="flex flex-col gap-5">
 
           {/* Main article card */}
-          <div className="bg-white border border-gray-100 rounded-md overflow-hidden">
+          <div style={{
+            backgroundColor: theme.bgCard,
+            border: `1px solid ${theme.borderCard}`,
+            boxShadow: theme.glowGreen || theme.shadowLg,
+          }} className="rounded-md overflow-hidden transition-colors duration-300">
 
             {/* Cover image */}
             <img
@@ -92,28 +104,32 @@ export default function SingleBlog() {
                 >
                   {blog.category || "General"}
                 </span>
-                <span className="text-[11px] text-gray-400">
+                <span style={{ color: theme.textMuted }} className="text-[11px]">
                   {readTime(blog.description)} min read
                 </span>
               </div>
 
               {/* Title */}
-              <h1 className="font-serif text-[26px] font-semibold text-gray-900 leading-[1.3] mb-5">
+              <h1 style={{ color: theme.textDark }} className="font-serif text-[26px] font-semibold leading-[1.3] mb-5">
                 {blog.title}
               </h1>
 
               {/* Meta strip */}
-              <div className="flex flex-wrap items-center gap-4 py-3.5 border-t border-b border-gray-100 mb-5 text-xs text-gray-400">
+              <div style={{
+                borderTopColor: theme.borderCard,
+                borderBottomColor: theme.borderCard,
+                color: theme.textMuted,
+              }} className="flex flex-wrap items-center gap-4 py-3.5 border-t border-b mb-5 text-xs">
                 <span className="flex items-center gap-2">
                   Posted by{" "}
-                  <strong className="text-gray-700 font-medium">{blog.author || "Unknown"}</strong>
+                  <strong style={{ color: theme.textMid }} className="font-medium">{blog.author || "Unknown"}</strong>
                 </span>
                 <span className="flex items-center gap-1.5">
                   <svg className="w-3.5 h-3.5" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
                     <rect x="2" y="3" width="12" height="12" rx="1.5"/>
                     <path d="M5 1v4M11 1v4M2 7h12"/>
                   </svg>
-                  <strong className="text-gray-700 font-medium">{formatDate(blog.date)}</strong>
+                  <strong style={{ color: theme.textMid }} className="font-medium">{formatDate(blog.date)}</strong>
                 </span>
               </div>
 
@@ -123,7 +139,12 @@ export default function SingleBlog() {
                   {blog.tags.map((tag, i) => (
                     <span
                       key={i}
-                      className="text-[11px] px-2.5 py-1 rounded-full bg-gray-50 border border-gray-100 text-gray-400"
+                      style={{
+                        backgroundColor: theme.bgHover,
+                        borderColor: theme.borderCard,
+                        color: theme.textMuted,
+                      }}
+                      className="text-[11px] px-2.5 py-1 rounded-full border transition-colors"
                     >
                       #{tag}
                     </span>
@@ -132,15 +153,21 @@ export default function SingleBlog() {
               )}
 
               {/* Body */}
-              <p className="text-[14px] text-gray-700 leading-[1.85] font-light"
+              <p style={{ color: theme.textMid }} className="text-[14px] leading-[1.85] font-light"
                   dangerouslySetInnerHTML={{ __html: blog.description }}
               />
             </div>
 
             {/* Like + Share */}
-            <div className="flex items-center gap-2 px-6 lg:px-7 py-3.5 border-t border-gray-100">
+            <div style={{
+              borderTopColor: theme.borderCard,
+            }} className="flex items-center gap-2 px-6 lg:px-7 py-3.5 border-t transition-colors">
               <LikeButton postId={blog.id} />
-              <button className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-medium border border-gray-200 rounded-lg bg-white hover:bg-gray-50 text-gray-500 transition-colors">
+              <button style={{
+                border: `1px solid ${theme.borderCard}`,
+                backgroundColor: theme.bgCard,
+                color: theme.textMuted,
+              }} className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-medium rounded-lg hover:opacity-80 transition-colors">
                 <svg className="w-3.5 h-3.5" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
                   <circle cx="12" cy="3" r="1.5"/>
                   <circle cx="4" cy="8" r="1.5"/>
@@ -152,24 +179,35 @@ export default function SingleBlog() {
             </div>
 
             {/* Prev / Next */}
-            <div className="grid grid-cols-2 gap-2.5 px-6 lg:px-7 py-4 border-t border-gray-100">
+            <div style={{
+              borderTopColor: theme.borderCard,
+            }} className="grid grid-cols-2 gap-2.5 px-6 lg:px-7 py-4 border-t transition-colors">
               <button
                 onClick={() => prevBlog && navigate(`/blog/${prevBlog.id}`)}
                 disabled={!prevBlog}
-                className="flex flex-col gap-0.5 text-left px-3.5 py-2.5 border border-gray-200 rounded-sm bg-white hover:bg-gray-50 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                style={{
+                  border: `1px solid ${theme.borderCard}`,
+                  backgroundColor: theme.bgCard,
+                  color: theme.textMuted,
+                }}
+                className="flex flex-col gap-0.5 text-left px-3.5 py-2.5 rounded-sm hover:opacity-80 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
               >
-                <span className="text-[10px] uppercase tracking-wider  font-extrabold">← Previous</span>
-                <span className="hidden lg:inline text-xs text-gray-600 font-medium truncate">
+                <span style={{ color: theme.textDark }} className="text-[10px] uppercase tracking-wider font-extrabold">← Previous</span>
+                <span className="hidden lg:inline text-xs font-medium truncate" style={{ color: theme.textMid }}>
                   {prevBlog?.title || "No previous post"}
                 </span>
               </button>
               <button
                 onClick={() => nextBlog && navigate(`/blog/${nextBlog.id}`)}
                 disabled={!nextBlog}
-                className="flex flex-col gap-0.5 text-right items-end px-3.5 py-2.5 rounded-sm bg-gray-900 text-white hover:bg-gray-800 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                style={{
+                  backgroundColor: theme.primary,
+                  color: theme.textWhite,
+                }}
+                className="flex flex-col gap-0.5 text-right items-end px-3.5 py-2.5 rounded-sm hover:opacity-80 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
               >
-                <span className="text-[10px] uppercase tracking-wider text-gray-400 font-extrabold text-center ">Next →</span>
-                <span className="hidden lg:inline text-xs text-gray-200  truncate sm-text-red">
+                <span style={{ color: theme.textWhite }} className="text-[10px] uppercase tracking-wider font-extrabold">Next →</span>
+                <span className="hidden lg:inline text-xs truncate" style={{ color: theme.textWhite }}>
                   {nextBlog?.title || "No next post"}
                 </span>
               </button>
@@ -177,7 +215,11 @@ export default function SingleBlog() {
           </div>
 
           {/* Comments */}
-          <div className="bg-white border border-gray-100 rounded-2xl p-6 lg:p-7">
+          <div style={{
+            backgroundColor: theme.bgCard,
+            border: `1px solid ${theme.borderCard}`,
+            boxShadow: theme.glowPink || theme.shadowLg,
+          }} className="rounded-2xl p-6 lg:p-7 transition-colors">
             <Comments postId={blog.id} postTitle={blog.title} />
           </div>
         </div>
@@ -186,8 +228,12 @@ export default function SingleBlog() {
         <aside className="flex flex-col gap-4 sticky top-6">
 
           {/* Author card — from blog data, no static text */}
-          <div className="bg-white border border-gray-100 rounded-sm p-4">
-            <p className="text-[10px] uppercase tracking-widest font-medium text-gray-400 mb-3">
+          <div style={{
+            backgroundColor: theme.bgCard,
+            border: `1px solid ${theme.borderCard}`,
+            boxShadow: theme.glowOrange || theme.shadowSm,
+          }} className="rounded-sm p-4 transition-colors">
+            <p style={{ color: theme.textMuted }} className="text-[10px] uppercase tracking-widest font-medium mb-3">
               Author
             </p>
             <div className="flex gap-3 items-center">
@@ -196,25 +242,28 @@ export default function SingleBlog() {
               >
                 {initials(blog.author)}
               </div>
-              <p className="text-sm font-medium text-gray-800">{blog.author || "Unknown"}</p>
+              <p style={{ color: theme.textDark }} className="text-sm font-medium">{blog.author || "Unknown"}</p>
             </div>
           </div>
 
           {/* Categories — live from categoryUtils */}
-          <div className="bg-white border border-gray-100 rounded-sm p-4">
-            <p className="text-[10px] uppercase tracking-widest font-medium text-gray-400 mb-3">
+          <div style={{
+            backgroundColor: theme.bgCard,
+            border: `1px solid ${theme.borderCard}`,
+            boxShadow: theme.glowGreen || theme.shadowSm,
+          }} className="rounded-sm p-4 transition-colors">
+            <p style={{ color: theme.textMuted }} className="text-[10px] uppercase tracking-widest font-medium mb-3">
               Categories
             </p>
             <ul className="space-y-0.5">
               {categories.map((cat) => (
                 <li
                   key={cat.name}
-                  // onClick={() => navigate(`/blog?category=${cat.name}`)}
-                  className={`flex items-center justify-between px-2.5 py-1.5 rounded-lg cursor-pointer text-xs transition-colors
-                    ${blog.category === cat.name
-                      ? " text-gray-900 font-medium"
-                      : "text-gray-500 hover:bg-gray-50 hover:text-gray-800"
-                    }`}
+                  style={{
+                    color: blog.category === cat.name ? theme.textDark : theme.textMuted,
+                    backgroundColor: blog.category === cat.name ? theme.bgHover : "transparent",
+                  }}
+                  className="flex items-center justify-between px-2.5 py-1.5 rounded-lg cursor-pointer text-xs transition-colors hover:opacity-80"
                 >
                   <span className="flex items-center gap-2">
                     <span
@@ -223,7 +272,10 @@ export default function SingleBlog() {
                     />
                     {cat.name}
                   </span>
-                  <span className="text-[10px] bg-gray-100 text-gray-400 px-1.5 py-0.5 rounded-full min-w-[22px] text-center">
+                  <span style={{
+                    backgroundColor: theme.bgHover,
+                    color: theme.textMuted,
+                  }} className="text-[10px] px-1.5 py-0.5 rounded-full min-w-[22px] text-center">
                     {cat.count}
                   </span>
                 </li>
@@ -232,24 +284,30 @@ export default function SingleBlog() {
           </div>
 
           {/* Popular posts — sorted by likes, current post excluded */}
-          <div className="bg-white border border-gray-100 rounded-sm p-4">
-            <p className="text-[10px] uppercase tracking-widest font-medium text-gray-400 mb-3">
+          <div style={{
+            backgroundColor: theme.bgCard,
+            border: `1px solid ${theme.borderCard}`,
+            boxShadow: theme.glowPink || theme.shadowSm,
+          }} className="rounded-sm p-4 transition-colors">
+            <p style={{ color: theme.textMuted }} className="text-[10px] uppercase tracking-widest font-medium mb-3">
               Popular posts
             </p>
-            <div className="divide-y divide-gray-100">
+            <div style={{
+              borderColor: theme.borderCard,
+            }} className="divide-y">
               {popularPosts.map((b, i) => {
                 const pMeta = getCategoryMeta(b.category);
                 return (
                   <div
                     key={b.id}
                     onClick={() => navigate(`/blog/${b.id}`)}
-                    className="flex gap-2.5 py-2.5 cursor-pointer group"
+                    className="flex gap-2.5 py-2.5 cursor-pointer group transition-opacity hover:opacity-80"
                   >
-                    <span className="font-serif text-xl font-light text-gray-200 w-6 flex-shrink-0 leading-tight">
+                    <span style={{ color: theme.textMuted }} className="font-serif text-xl font-light w-6 flex-shrink-0 leading-tight">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     <div className="min-w-0">
-                      <p className="text-xs text-gray-500 group-hover:text-gray-900 leading-snug transition-colors mb-0.5 truncate">
+                      <p style={{ color: theme.textMuted }} className="text-xs leading-snug group-hover:opacity-80 transition-opacity mb-0.5 truncate">
                         {b.title}
                       </p>
                       <div className="flex items-center gap-1.5">

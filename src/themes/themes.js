@@ -100,51 +100,57 @@ export const darkTheme = {
 // Neon theme
 export const neonTheme = {
   // Primary Colors
-  primary: "#00d4ff",
-  primaryHover: "#00a8cc",
-  primaryLight: "#00a8cc",
+  primary: "#39ff14",
+  primaryHover: "#2adb0a",
+  primaryLight: "#1a6b0a",
   
   // Accent Colors
   accentGreen: "#39ff14",
   accentGreenHover: "#2adb0a",
-  accentRed: "#ff006e",
-  accentPink: "#ff10f0",
-  accentYellow: "#ffff00",
-  accentPurple: "#9d00ff",
+  accentRed: "#ff6b35",
+  accentPink: "#ff1493",
+  accentYellow: "#ff8c00",
+  accentPurple: "#8b00ff",
 
   // Text Colors
   textDark: "#ffffff",
-  textMid: "#e0e0e0",
-  textMuted: "#a0a0a0",
-  textLight: "#606060",
+  textMid: "#39ff14",
+  textMuted: "#ff8c00",
+  textLight: "#ff1493",
   textWhite: "#000000",
 
   // Background Colors
-  bgPage: "#0a0e27",
-  bgCard: "#1a1f3a",
-  bgHover: "#2a2f4a",
-  bgSecondary: "#0a0e27",
+  bgPage: "#000000",
+  bgCard: "#0a0a0a",
+  bgHover: "#1a1a1a",
+  bgSecondary: "#000000",
 
   // Border Colors
-  borderCard: "#00d4ff",
-  borderLight: "#39ff14",
-  borderMuted: "#ff10f0",
+  borderCard: "#39ff14",
+  borderLight: "#ff8c00",
+  borderMuted: "#ff1493",
 
   // Social Colors
-  github: "#00d4ff",
-  linkedin: "#00d4ff",
-  instagram: "#ff10f0",
+  github: "#39ff14",
+  linkedin: "#8b00ff",
+  instagram: "#ff1493",
   
   // Navigation
-  navBg: "rgba(10, 14, 39, 0.95)",
-  navText: "#00d4ff",
+  navBg: "rgba(0, 0, 0, 0.95)",
+  navText: "#39ff14",
   navBgDark: "#000000",
-  navTextDark: "#00d4ff",
+  navTextDark: "#39ff14",
 
-  // Additional utilities
-  shadow: "0 0 20px rgba(0, 212, 255, 0.3)",
-  shadowSm: "0 0 10px rgba(0, 212, 255, 0.2)",
-  shadowLg: "0 0 40px rgba(0, 212, 255, 0.4)",
+  // Additional utilities - Enhanced glow effects
+  shadow: "0 0 15px rgba(57, 255, 20, 0.4), 0 0 30px rgba(255, 140, 0, 0.2)",
+  shadowSm: "0 0 8px rgba(57, 255, 20, 0.3)",
+  shadowLg: "0 0 25px rgba(57, 255, 20, 0.5), 0 0 40px rgba(255, 20, 147, 0.3), inset 0 0 10px rgba(57, 255, 20, 0.1)",
+  
+  // Additional glow shadows for specific use
+  glowGreen: "0 0 20px rgba(57, 255, 20, 0.6), 0 0 40px rgba(57, 255, 20, 0.3)",
+  glowOrange: "0 0 20px rgba(255, 140, 0, 0.6), 0 0 40px rgba(255, 140, 0, 0.3)",
+  glowPink: "0 0 20px rgba(255, 20, 147, 0.6), 0 0 40px rgba(255, 20, 147, 0.3)",
+  glowMulti: "0 0 20px rgba(57, 255, 20, 0.4), 0 0 20px rgba(255, 140, 0, 0.3), 0 0 20px rgba(255, 20, 147, 0.2)",
 };
 
 export const themes = {

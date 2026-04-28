@@ -33,7 +33,7 @@ const ChatContainer = styled.div`
   border: 1px solid ${props => props.theme.borderCard};
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: ${props => props.theme.shadowLg};
+  box-shadow: ${props => props.theme.glowMulti || props.theme.shadowLg};
   animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   transition: all 0.3s ease;
 
@@ -159,7 +159,7 @@ const MessageBubble = styled.div`
   border-radius: ${props => props.isUser ? '18px 18px 4px 18px' : '18px 18px 18px 4px'};
   background-color: ${props => props.isUser ? props.theme.primary : props.theme.bgCard};
   color: ${props => props.isUser ? props.theme.textWhite : props.theme.textMid};
-  box-shadow: ${props => props.isUser ? `0 2px 8px ${props.theme.primaryLight}40` : 'none'};
+  box-shadow: ${props => props.isUser ? (props.theme.glowGreen || `0 2px 8px ${props.theme.primaryLight}40`) : (props.theme.glowPink || 'none')};
   word-break: break-word;
   transition: all 0.3s ease;
 `;
