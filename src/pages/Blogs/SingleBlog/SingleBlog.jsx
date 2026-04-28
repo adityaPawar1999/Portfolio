@@ -63,7 +63,6 @@ export default function SingleBlog() {
             Blog
           </span>
           <span className="opacity-40">/</span>
-          <span className="text-gray-600 truncate max-w-sm">{blog.title}</span>
         </nav>
       </div>
 

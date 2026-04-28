@@ -4,6 +4,8 @@ import { getBotReply } from "../../ChatBot/chatbotBrain";
 import { useTheme } from "../../themes/ThemeContext";
 import SmartToyIcon from "@mui/icons-material/SmartToy";
 import SendIcon from "@mui/icons-material/Send";
+import { db } from "../../firebase/index";
+import { collection, doc, setDoc, serverTimestamp } from "firebase/firestore";
 
 const ChatPageContainer = styled.div`
   width: 100%;
@@ -357,28 +359,49 @@ export default function ChatbotUI() {
   const [input, setInput] = useState("");
   const [thinking, setThinking] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
+  const [userChats, setUserChats] = useState([]);
+  const [sessionId] = useState(Date.now().toString());
   const bottomRef = useRef();
 
   const scrollToBottom = () => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
+  // Save all user messages as array to Firebase in one document
+  const saveUserChatsToFirebase = async (allChats) => {
+    try {
+      await setDoc(doc(db, "userChats", sessionId), {
+        messages: allChats,
+        sessionId: sessionId,
+        timestamp: serverTimestamp(),
+      });
+      console.log("All messages saved to Firebase!");
+    } catch (error) {
+      console.error("Error saving messages to Firebase:", error);
+    }
+  };
+
   useEffect(() => { scrollToBottom(); }, [messages, thinking]);
 
   const sendMessage = async (text) => {
     const msg = text || input;
-    if (!msg.trim() || thinking || isTyping) return;
+    if (!msg.trim() || thinking) return;
 
     const userMsg = { role: "user", text: msg };
     setMessages((prev) => [...prev, userMsg]);
+    
+    // Add to userChats array and save to Firebase
+    const updatedChats = [...userChats, msg];
+    setUserChats(updatedChats);
+    await saveUserChatsToFirebase(updatedChats);
+    
     setInput("");
     setThinking(true);
 
     setTimeout(() => {
       const reply = getBotReply(msg);
       setThinking(false);
-      setIsTyping(true);
-      setMessages((prev) => [...prev, { role: "bot", text: reply, animate: true }]);
+      setMessages((prev) => [...prev, { role: "bot", text: reply, animate: false }]);
     }, 700);
   };
 
@@ -441,7 +464,7 @@ export default function ChatbotUI() {
           />
           <SendButton
             onClick={() => sendMessage()}
-            disabled={thinking || isTyping || !input.trim()}
+            disabled={thinking || !input.trim()}
           >
             <SendIcon />
             Send
