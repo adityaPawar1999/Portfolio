@@ -13,12 +13,25 @@ import { useTheme } from '../../themes/ThemeContext';
 import { NAV_LINKS, SOCIAL_LINKS } from '../../constants';
 
 // ── Color Variables ──────────────────────────────────────────
+// const COLORS = {
+//   neonBlue:    '#1477d2',
+//   neonGlow:    'rgba(20,119,210,0.45)',
+//   neonCyan:    '#38bdf8',
+//   borderGlass: 'rgba(255,255,255,0.12)',
+//   borderDark:  'rgba(20,119,210,0.25)',
+//   white:       '#ffffff',
+//   dark:        '#0f172a',
+// };
+
 const COLORS = {
-  neonBlue:    '#1477d2',
-  neonGlow:    'rgba(20,119,210,0.45)',
-  neonCyan:    '#38bdf8',
+  neonRed:     '#FF2D55',
+  neonGlow:    'rgba(255,45,85,0.45)',
+  neonCyan:    '#00FFFF',
+  activeYellow:'#FFE600',
+
   borderGlass: 'rgba(255,255,255,0.12)',
-  borderDark:  'rgba(20,119,210,0.25)',
+  borderDark:  'rgba(255,45,85,0.25)',
+
   white:       '#ffffff',
   dark:        '#0f172a',
 };
