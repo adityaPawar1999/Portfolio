@@ -172,33 +172,7 @@ const Navbar = () => {
       {/* ════════════════════════════════════════
           NAVBAR BAR
       ════════════════════════════════════════ */}
-      {/* <nav
-        className="nb fixed top-0 left-0 right-0 z-50 transition-all duration-300"
-        style={{
-          backdropFilter: 'blur(14px)',
-          WebkitBackdropFilter: 'blur(14px)',
-          background: scrolled ? 'rgba(0,0,0,0.90)' : 'rgba(0,0,0,0.55)',
-          borderBottom: `1px solid ${scrolled ? COLORS.borderDark : 'rgba(255,45,85,0.12)'}`,
-          boxShadow: scrolled ? `0 2px 20px rgba(255,45,85,0.12)` : 'none',
-          padding: scrolled ? '6px 0' : '10px 0',
-        }}
-      >
-        {/* Ticker strip — visible only at top */}
-        {!scrolled && (
-          <div style={{ height: 20, background: COLORS.neonRed, overflow: 'hidden', display: 'flex', alignItems: 'center' }}>
-            <div className="nb-ticker-inner">
-              {[...Array(4)].map((_, i) => (
-                <React.Fragment key={i}>
-                  <span>ERP Implementation</span><span className="nb-ticker-sep">✦</span>
-                  <span>Techno-Functional</span><span className="nb-ticker-sep">✦</span>
-                  <span>Process Automation</span><span className="nb-ticker-sep">✦</span>
-                  <span>Supply Chain</span><span className="nb-ticker-sep">✦</span>
-                </React.Fragment>
-              ))}
-            </div>
-          </div>
-        )} */}
-
+  
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 flex items-center justify-between gap-6">
 
           {/* ── Logo ── */}
