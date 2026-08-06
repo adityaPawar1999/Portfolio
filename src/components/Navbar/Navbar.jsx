@@ -1,8 +1,3 @@
-
-
-
-
-
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -177,7 +172,18 @@ const Navbar = () => {
       {/* ════════════════════════════════════════
           NAVBAR BAR
       ════════════════════════════════════════ */}
-  
+      <nav
+        className="fixed top-0 left-0 w-full z-50 transition-all duration-300 py-3"
+        style={{
+          background: scrolled
+            ? 'rgba(0,0,0,0.85)'
+            : (isDarkBg ? 'transparent' : 'rgba(255,255,255,0.85)'),
+          backdropFilter: scrolled ? 'blur(16px)' : 'none',
+          WebkitBackdropFilter: scrolled ? 'blur(16px)' : 'none',
+          borderBottom: scrolled ? `1px solid ${COLORS.borderDark}` : '1px solid transparent',
+          boxShadow: scrolled ? '0 4px 24px rgba(0,0,0,0.35)' : 'none',
+        }}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 flex items-center justify-between gap-6">
 
           {/* ── Logo ── */}
