@@ -9,7 +9,7 @@ const categoriesData = [
   { "name": "Career",         "color": "bg-violet-400",  "badgeBg": "bg-violet-50",  "badgeText": "text-violet-700",  "badgeBorder": "border-violet-100",  "dot": "#7F77DD" },
   { "name": "Education",      "color": "bg-teal-400",    "badgeBg": "bg-teal-50",    "badgeText": "text-teal-700",    "badgeBorder": "border-teal-100",    "dot": "#5DCAA5" },
   { "name": "Musings",        "color": "bg-indigo-400",  "badgeBg": "bg-indigo-50",  "badgeText": "text-indigo-700",  "badgeBorder": "border-indigo-100",  "dot": "#5C6BC0" },
-  { "name": "News",           "color": "bg-gray-400",    "badgeBg": "bg-gray-50",    "badgeText": "text-gray-600",    "badgeBorder": "border-gray-200",    "dot": "#888780" }
+  { "name": "News",           "color": "bg-gray-400",    "badgeBg": "bg-gray-50",    "badgeText": "text-gray-600",    "badgeBorder": "border-gray-200",    "dot": "#888780" },
   { "name": "Religion",       "color": "bg-fuchsia-400", "badgeBg": "bg-fuchsia-50", "badgeText": "text-fuchsia-700", "badgeBorder": "border-fuchsia-100", "dot": "#C24FBE" },
 ];
 
