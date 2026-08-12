@@ -160,17 +160,13 @@ export default function About() {
           />
 
           <div>
-            <Accent className="block text-[22px] font-bold tracking-widest uppercase mb-3">
-              About Me
-            </Accent>
-
-            <TextDark className="block text-[3.2rem] md:text-[4rem] font-black leading-tight mb-4">
+            <TextDark className="block text-[1rem] md:text-[1rem] font-black leading-tight mb-4">
               ERP Consultant & <Accent>Techno-Functional Expert</Accent>
             </TextDark>
 
             <AccentBar className="w-[72px] h-[6px] rounded-full mb-6" />
 
-            <TextMid className="block text-xl leading-relaxed max-w-2xl mb-8">
+            <TextMid className="block text-md leading-relaxed max-w-2xl mb-8">
               Hi! I'm{" "}
               <Accent className="font-semibold">Aditya Vilas Pawar</Accent>,
               an ERP techno-functional consultant experienced in designing
@@ -179,14 +175,14 @@ export default function About() {
               chain.
             </TextMid>
 
-            <TextDark className="block text-[22px] font-bold tracking-widest uppercase mb-5">
+            <TextDark className="block text-[15px] font-bold tracking-widest uppercase mb-5">
               Areas of Focus
             </TextDark>
 
             <ul className="grid grid-cols-1 sm:grid-cols-3 gap-x-8 gap-y-4">
               {tags.map((tag) => (
                 <li key={tag} className="flex items-start gap-3">
-                  <BulletDot className="mt-2.5 w-2.5 h-2.5 rounded-full shrink-0" />
+                  <BulletDot className=" ounded-full shrink-0" />
                   <TextMid className="text-base leading-snug">{tag}</TextMid>
                 </li>
               ))}
@@ -198,7 +194,7 @@ export default function About() {
 
         {/* Experience */}
         <div className="px-6 md:px-12">
-          <TextDark className="block text-[22px] font-bold tracking-widest uppercase mb-10">
+          <TextDark className="block text-[15px] font-bold tracking-widest uppercase mb-10">
             Work Experience
           </TextDark>
 
