@@ -2,197 +2,83 @@ import React from "react";
 import styled from "styled-components";
 import PlaceIcon from "@mui/icons-material/Place";
 import LocalPostOfficeIcon from "@mui/icons-material/LocalPostOffice";
-import WorkHistoryIcon from "@mui/icons-material/WorkHistory";
-import SchoolIcon from "@mui/icons-material/School";
-import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
+import AssessmentIcon from "@mui/icons-material/Assessment";
 import SelfPic from "./img1.jpg";
 
-// ── Styled Components ──────────────────────────────────────────
+// ── Themed atoms (only these touch theme colors — everything else is Tailwind) ──
 
-const AboutContainer = styled.div`
-  width: 100%;
-  height: 80vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: ${props => props.theme.bgPage};
-  padding: 0 16px;
+const Bg = styled.div`
+  background-color: ${(props) => props.theme.bgPage};
   transition: background-color 0.3s ease, color 0.3s ease;
 `;
 
-const AboutContent = styled.div`
-  width: 100%;
-  max-width: 1280px;
-  height: 100%;
-  display: flex;
-  gap: 24px;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+const Accent = styled.span`
+  color: ${(props) => props.theme.primary};
+`;
 
-  @media (max-width: 768px) {
-    flex-direction: column;
-    height: auto;
-    overflow-y: auto;
+const TextDark = styled.span`
+  color: ${(props) => props.theme.textDark};
+`;
+
+const TextMid = styled.span`
+  color: ${(props) => props.theme.textMid};
+`;
+
+const AccentBar = styled.div`
+  background-color: ${(props) => props.theme.primary};
+`;
+
+const HairlineDivider = styled.div`
+  background-color: ${(props) => props.theme.borderCard};
+`;
+
+const Tag = styled.span`
+  border: 1px solid ${(props) => props.theme.primary};
+  color: ${(props) => props.theme.primary};
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: ${(props) => props.theme.primary};
+    color: ${(props) => props.theme.textWhite};
   }
 `;
 
-// ── Left: Photo (30%) ────────────────────────────────────────
-
-const PhotoContainer = styled.div`
-  flex: 0 0 30%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-
-  @media (max-width: 768px) {
-    flex: 0 0 auto;
-    height: 260px;
-  }
-`;
-
-const ProfileImage = styled.img`
-  border-radius: 8px;
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-  box-shadow: ${props => props.theme.shadowLg};
-`;
-
-// ── Right: Content (70%) ────────────────────────────────────
-
-const TextSection = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-width: 0;
-  height: 100%;
-`;
-
-const SubLabel = styled.p`
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: ${props => props.theme.primary};
-  margin-bottom: 4px;
-`;
-
-const Title = styled.h1`
-  font-size: clamp(1.4rem, 2.2vw, 2rem);
-  font-weight: 900;
-  line-height: 1.2;
-  color: ${props => props.theme.textDark};
-  margin-bottom: 8px;
-`;
-
-const HighlightSpan = styled.span`
-  color: ${props => props.theme.primary};
-`;
-
-const Description = styled.p`
-  font-size: 13px;
-  color: ${props => props.theme.textMid};
-  line-height: 1.5;
-  margin-bottom: 12px;
-`;
-
-const FocusLabel = styled.p`
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: ${props => props.theme.textDark};
-  margin-bottom: 8px;
-`;
-
-const FocusGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 6px 12px;
-  margin-bottom: 14px;
-
-  @media (max-width: 768px) {
-    grid-template-columns: repeat(1, 1fr);
-  }
-`;
-
-const FocusItem = styled.div`
-  display: flex;
-  align-items: flex-start;
-  gap: 6px;
-  font-size: 12px;
-  color: ${props => props.theme.textMid};
+const IconWrap = styled.span`
+  color: ${(props) => props.theme.primary};
+  display: inline-flex;
 
   svg {
-    color: ${props => props.theme.primary};
-    font-size: 8px;
-    margin-top: 4px;
-    flex-shrink: 0;
-  }
-`;
-
-const DividerLine = styled.div`
-  height: 1px;
-  background-color: ${props => props.theme.borderCard};
-  margin-bottom: 14px;
-`;
-
-const BottomGrid = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-  }
-`;
-
-const InfoCard = styled.div`
-  border-radius: 10px;
-  padding: 12px;
-  background-color: ${props => props.theme.bgCard};
-  border: 1px solid ${props => props.theme.borderCard};
-  box-shadow: ${props => props.theme.shadowSm};
-`;
-
-const CardTitle = styled.h3`
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 11px;
-  font-weight: 700;
-  color: ${props => props.theme.textDark};
-  margin-bottom: 6px;
-
-  svg {
-    color: ${props => props.theme.primary};
     font-size: 16px;
   }
 `;
 
-const EntryRow = styled.div`
-  margin-bottom: 6px;
+const CardLink = styled.a`
+  color: ${(props) => props.theme.primary};
 
-  &:last-child {
-    margin-bottom: 0;
+  &:hover {
+    color: ${(props) => props.theme.primaryHover};
   }
 `;
 
-const EntryTitle = styled.p`
-  font-size: 12px;
-  font-weight: 600;
-  color: ${props => props.theme.textDark};
+const StatusDot = styled.span`
+  background-color: ${(props) => props.theme.accentGreen};
+
+  @keyframes pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+  animation: pulse 2s infinite;
 `;
 
-const EntryMeta = styled.p`
-  font-size: 11px;
-  color: ${props => props.theme.textMid};
-`;
+// ── Content data ─────────────────────────────────────────────
+// Swap these placeholders for your real history — shape is ready to go.
 
-// ── Component ──────────────────────────────────────────────────
-
-const focusAreas = [
+const tags = [
   "ERP Implementation",
   "Functional & Technical Consulting",
   "Accounting & Finance",
@@ -201,88 +87,182 @@ const focusAreas = [
   "Automation & Client Scripting",
 ];
 
-// TODO: replace with your actual roles/dates
 const experience = [
-  { role: "ERP Techno-Functional Consultant", meta: "Company Name · 20XX – Present" },
-  { role: "ERP Support / Implementation Analyst", meta: "Company Name · 20XX – 20XX" },
+  {
+    role: "ERP Techno-Functional Consultant",
+    org: "Company Name",
+    period: "2023 — Present",
+    points: [
+      "Led end-to-end ERP implementations across accounting and inventory modules.",
+      "Built custom automation scripts to streamline client workflows.",
+    ],
+  },
+  {
+    role: "ERP Support Consultant",
+    org: "Company Name",
+    period: "2021 — 2023",
+    points: [
+      "Provided functional support for manufacturing and procurement modules.",
+      "Partnered with clients to translate business needs into system configs.",
+    ],
+  },
 ];
 
-// TODO: replace with your actual degrees/dates
 const education = [
-  { role: "B.E. / B.Tech, Your Branch", meta: "Your College · 20XX – 20XX" },
-  { role: "HSC / Diploma", meta: "Your School/College · 20XX" },
+  {
+    degree: "B.E. in Your Field",
+    school: "Your College / University",
+    period: "2017 — 2021",
+  },
 ];
+
+// ── Component ────────────────────────────────────────────────
 
 export default function About() {
   return (
-    <AboutContainer>
-      <AboutContent>
-        {/* Left: Photo */}
-        <PhotoContainer>
-          <ProfileImage src={SelfPic} alt="Aditya Vilas Pawar" />
-        </PhotoContainer>
+    <Bg className="w-full min-h-screen flex items-center justify-center px-4 py-10">
+      <div className="w-full max-w-5xl font-sans">
+        {/* Top: photo + intro */}
+        <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-8 items-start">
+          <img
+            src={SelfPic}
+            alt="Aditya Vilas Pawar"
+            className="w-full max-w-[220px] h-[280px] object-cover rounded-md mx-auto md:mx-0"
+          />
 
-        {/* Right: Content */}
-        <TextSection>
-          <SubLabel>About Me</SubLabel>
+          <div>
+            <Accent className="block text-[11px] font-bold tracking-widest uppercase mb-1.5">
+              About Me
+            </Accent>
 
-          <Title>
-            ERP Consultant &{" "}
-            <HighlightSpan>Techno-Functional Expert</HighlightSpan>
-          </Title>
+            <TextDark className="block text-[1.6rem] md:text-[2rem] font-black leading-tight mb-2">
+              ERP Consultant & <Accent>Techno-Functional Expert</Accent>
+            </TextDark>
 
-          <Description>
-            Hi! I'm{" "}
-            <HighlightSpan style={{ fontWeight: 600 }}>
-              Aditya Vilas Pawar
-            </HighlightSpan>, an ERP techno-functional consultant experienced in designing and implementing practical, scalable ERP solutions across accounting, inventory, manufacturing, procurement, and supply chain.
-          </Description>
+            <AccentBar className="w-9 h-[3px] rounded-full mb-3" />
 
-          <FocusLabel>Areas of Focus</FocusLabel>
+            <TextMid className="block text-sm leading-relaxed max-w-md mb-4">
+              Hi! I'm{" "}
+              <Accent className="font-semibold">Aditya Vilas Pawar</Accent>,
+              an ERP techno-functional consultant experienced in designing
+              and implementing practical, scalable ERP solutions across
+              accounting, inventory, manufacturing, procurement, and supply
+              chain.
+            </TextMid>
 
-          <FocusGrid>
-            {focusAreas.map((tag) => (
-              <FocusItem key={tag}>
-                <FiberManualRecordIcon />
-                {tag}
-              </FocusItem>
-            ))}
-          </FocusGrid>
+            <TextDark className="block text-[11px] font-bold tracking-widest uppercase mb-2.5">
+              Areas of Focus
+            </TextDark>
 
-          <DividerLine />
-
-          <BottomGrid>
-            {/* Work Experience */}
-            <InfoCard>
-              <CardTitle>
-                <WorkHistoryIcon />
-                Work Experience
-              </CardTitle>
-              {experience.map((item) => (
-                <EntryRow key={item.role}>
-                  <EntryTitle>{item.role}</EntryTitle>
-                  <EntryMeta>{item.meta}</EntryMeta>
-                </EntryRow>
+            <div className="flex flex-wrap gap-2">
+              {tags.map((tag) => (
+                <Tag
+                  key={tag}
+                  className="text-[10px] font-medium px-3 py-1.5 rounded-full cursor-default"
+                >
+                  {tag}
+                </Tag>
               ))}
-            </InfoCard>
+            </div>
+          </div>
+        </div>
 
-            {/* Education */}
-            <InfoCard>
-              <CardTitle>
-                <SchoolIcon />
-                Education
-              </CardTitle>
-              {education.map((item) => (
-                <EntryRow key={item.role}>
-                  <EntryTitle>{item.role}</EntryTitle>
-                  <EntryMeta>{item.meta}</EntryMeta>
-                </EntryRow>
-              ))}
-            </InfoCard>
-          </BottomGrid>
-        </TextSection>
-      </AboutContent>
-    </AboutContainer>
+        <HairlineDivider className="h-px my-8" />
+
+        {/* Experience */}
+        <TextDark className="block text-[11px] font-bold tracking-widest uppercase mb-4">
+          Work Experience
+        </TextDark>
+
+        <div className="flex flex-col gap-5 mb-8">
+          {experience.map((job) => (
+            <div key={job.role}>
+              <div className="flex flex-wrap items-baseline justify-between gap-x-3 mb-1">
+                <TextDark className="text-sm font-semibold">
+                  {job.role} · <Accent>{job.org}</Accent>
+                </TextDark>
+                <TextMid className="text-xs">{job.period}</TextMid>
+              </div>
+              <ul className="list-disc list-inside space-y-0.5">
+                {job.points.map((point) => (
+                  <TextMid key={point} className="block text-xs leading-relaxed">
+                    <li>{point}</li>
+                  </TextMid>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        <HairlineDivider className="h-px my-8" />
+
+        {/* Education */}
+        <TextDark className="block text-[11px] font-bold tracking-widest uppercase mb-4">
+          Education
+        </TextDark>
+
+        <div className="flex flex-col gap-3 mb-8">
+          {education.map((edu) => (
+            <div
+              key={edu.degree}
+              className="flex flex-wrap items-baseline justify-between gap-x-3"
+            >
+              <TextDark className="text-sm font-semibold">
+                {edu.degree} · <Accent>{edu.school}</Accent>
+              </TextDark>
+              <TextMid className="text-xs">{edu.period}</TextMid>
+            </div>
+          ))}
+        </div>
+
+        <HairlineDivider className="h-px my-8" />
+
+        {/* Location / Contact / Availability — no cards, just a clean row */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <div>
+            <TextDark className="flex items-center gap-1.5 text-[11px] font-bold mb-1.5">
+              <IconWrap>
+                <PlaceIcon />
+              </IconWrap>
+              Location
+            </TextDark>
+            <TextMid className="block text-xs leading-relaxed">
+              <TextDark className="font-medium">Current:</TextDark> Bangalore
+              <br />
+              <TextDark className="font-medium">Hometown:</TextDark> Pune
+            </TextMid>
+          </div>
+
+          <div>
+            <TextDark className="flex items-center gap-1.5 text-[11px] font-bold mb-1.5">
+              <IconWrap>
+                <LocalPostOfficeIcon />
+              </IconWrap>
+              Contact
+            </TextDark>
+            <CardLink
+              href="mailto:adityapawar8909@gmail.com"
+              className="text-xs break-all"
+            >
+              adityapawar8909@gmail.com
+            </CardLink>
+          </div>
+
+          <div>
+            <TextDark className="flex items-center gap-1.5 text-[11px] font-bold mb-1.5">
+              <IconWrap>
+                <AssessmentIcon />
+              </IconWrap>
+              Availability
+            </TextDark>
+            <TextMid className="flex items-center gap-2 text-xs">
+              <StatusDot className="w-1.5 h-1.5 rounded-full" />
+              Open for freelance & ERP consulting
+            </TextMid>
+          </div>
+        </div>
+      </div>
+    </Bg>
   );
 }
 
