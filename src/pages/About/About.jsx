@@ -15,7 +15,7 @@ const AboutContainer = styled.div`
   align-items: center;
   justify-content: center;
   background-color: ${props => props.theme.bgPage};
-  padding: 24px 16px;
+  padding: 10px 10px;
   margin-top: 60px;
   transition: background-color 0.3s ease, color 0.3s ease;
 `;
@@ -29,7 +29,7 @@ const AboutContent = styled.div`
 const GridSection = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 32px;
+  gap: 20px;
   align-items: center;
   margin-bottom: 24px;
 
@@ -48,7 +48,7 @@ const ProfileImage = styled.img`
   border-radius: 8px;
   object-fit: cover;
   width: 100%;
-  max-width: 280px;
+  max-width: 580px;
   height: 380px;
   box-shadow: ${props => props.theme.shadowLg};
 `;
